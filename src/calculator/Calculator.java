@@ -24,9 +24,14 @@ public class Calculator extends JFrame {
     }
     
     private void prepUI() {
+        prepFrame();
+        
+        setVisible(true);
+    }
+    
+    private void prepFrame() {
         setTitle("Calculator");
         setSize(WIDTH, HEIGHT);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setVisible(true);
-    }  
+    }
 }
