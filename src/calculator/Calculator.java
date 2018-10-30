@@ -6,6 +6,10 @@
 package calculator;
 
 import javax.swing.JFrame;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+
+import java.awt.GridLayout;
 
 /**
  *
@@ -25,6 +29,7 @@ public class Calculator extends JFrame {
     
     private void prepUI() {
         prepFrame();
+        prepButtons();
         
         setVisible(true);
     }
@@ -33,5 +38,32 @@ public class Calculator extends JFrame {
         setTitle("Calculator");
         setSize(WIDTH, HEIGHT);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+    
+    private void prepButtons() {
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new GridLayout(1, 4));
+        
+        JButton b7 = new JButton("7");
+        JButton b8 = new JButton("8");
+        JButton b9 = new JButton("9");
+        JButton bDivide = new JButton("\u00F7");
+        
+        JPanel b7Panel = new JPanel();
+        JPanel b8Panel = new JPanel();
+        JPanel b9Panel = new JPanel();
+        JPanel bDividePanel = new JPanel();
+        
+        b7Panel.add(b7);
+        b8Panel.add(b8);
+        b9Panel.add(b9);
+        bDividePanel.add(bDivide);
+        
+        buttonPanel.add(b7Panel);
+        buttonPanel.add(b8Panel);
+        buttonPanel.add(b9Panel);
+        buttonPanel.add(bDividePanel);
+        
+        add(buttonPanel);
     }
 }
