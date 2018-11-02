@@ -50,7 +50,6 @@ public class Calculator extends JFrame {
         prepRow4(gbc);
         prepRow5(gbc);
         prepRow6(gbc);
-        prepRow7(gbc);
         
         add(mainPanel);
         
@@ -162,11 +161,7 @@ public class Calculator extends JFrame {
         
     }
     
-    private void prepRow2(GridBagConstraints gbc) {
-        
-    }
-    
-    private void prepRow3(GridBagConstraints gbc) {      
+    private void prepRow2(GridBagConstraints gbc) {      
         gbc.gridx = 0;
         gbc.gridy = 2;
         JButton bClear = new JButton("C");
@@ -188,7 +183,7 @@ public class Calculator extends JFrame {
         mainPanel.add(bDivide, gbc); 
     }
     
-    private void prepRow4(GridBagConstraints gbc) {      
+    private void prepRow3(GridBagConstraints gbc) {      
         gbc.gridx = 0;
         gbc.gridy = 3;
         JButton b7 = new JButton("7");
@@ -210,7 +205,7 @@ public class Calculator extends JFrame {
         mainPanel.add(bMultiply, gbc);
     }
     
-    private void prepRow5(GridBagConstraints gbc) {
+    private void prepRow4(GridBagConstraints gbc) {
         gbc.gridx = 0;
         gbc.gridy = 4;
         JButton b4 = new JButton("4");
@@ -232,7 +227,7 @@ public class Calculator extends JFrame {
         mainPanel.add(bAdd, gbc);
     }
     
-    private void prepRow6(GridBagConstraints gbc) {
+    private void prepRow5(GridBagConstraints gbc) {
         gbc.gridx = 0;
         gbc.gridy = 5;
         JButton b1 = new JButton("1");
@@ -254,7 +249,7 @@ public class Calculator extends JFrame {
         mainPanel.add(bSubtract, gbc);
     }
     
-    private void prepRow7(GridBagConstraints gbc) {
+    private void prepRow6(GridBagConstraints gbc) {
         gbc.gridx = 0;
         gbc.gridy = 6;
         JButton b0 = new JButton("0");
@@ -267,7 +262,11 @@ public class Calculator extends JFrame {
         
         gbc.gridx = 2;
         gbc.gridy = 6;
-        gbc.gridwidth = 2;
+        JButton bBack = new JButton("\u00AB"); // « symbol
+        mainPanel.add(bBack, gbc);
+        
+        gbc.gridx = 3;
+        gbc.gridy = 6;
         JButton bEquals = new JButton("=");
         mainPanel.add(bEquals, gbc);
     }
