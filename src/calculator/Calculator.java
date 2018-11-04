@@ -65,7 +65,9 @@ public class Calculator extends JFrame {
         display = new JLabel("test");
         display.setOpaque(true);
         display.setBackground(Color.WHITE);
-        display.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        display.setBorder(BorderFactory.createLineBorder(new Color(180, 180, 180)));
+//        display.setBorder(BorderFactory.createBevelBorder(1));
+//        display.setBorder(BorderFactory.createEtchedBorder(1));
         mainPanel.add(display, gbc);
     }
     
@@ -91,7 +93,9 @@ public class Calculator extends JFrame {
         gbc.gridx = 3;
         gbc.gridy = 1;      
         JButton bDivide = new JButton("\u00F7"); // ÷ sign
-        mainPanel.add(bDivide, gbc); 
+        mainPanel.add(bDivide, gbc);
+        
+//        System.out.println(bClear.getBackground());
     }
     
     private void prepRow3() {      
