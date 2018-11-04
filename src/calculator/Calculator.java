@@ -9,7 +9,8 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- *
+ *  This class builds a GUI for a 4-function calculator.
+ * 
  * @author Mike Schulenberg
  */
 public class Calculator extends JFrame {
@@ -26,6 +27,9 @@ public class Calculator extends JFrame {
         new Calculator();
     }
     
+    /**
+     * Builds and reveals the UI.
+     */
     private void prepUI() {
         prepFrame();
         prepComponents();
@@ -33,12 +37,18 @@ public class Calculator extends JFrame {
         setVisible(true);
     }
     
+    /**
+     * Sets default attributes for UI's main window.
+     */
     private void prepFrame() {
         setTitle("Calculator");
         setSize(WIDTH, HEIGHT);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
+    /**
+     * Builds all components contained by the main window.
+     */
     private void prepComponents() {
         mainPanel = new JPanel();
         mainPanel.setLayout(new GridBagLayout());
@@ -53,6 +63,10 @@ public class Calculator extends JFrame {
         add(mainPanel);
     }
     
+    /**
+     * Builds the area where the calculator displays the expression to be
+     * evaluated and its result.
+     */
     private void prepRow1() {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.HORIZONTAL;
@@ -62,15 +76,17 @@ public class Calculator extends JFrame {
         gbc.insets = new Insets(0, 0, 25, 0);
         gbc.gridwidth = 4;
         gbc.ipady = 10;
-        display = new JLabel("test");
+        
+        display = new JLabel("0");
         display.setOpaque(true);
         display.setBackground(Color.WHITE);
         display.setBorder(BorderFactory.createLineBorder(new Color(180, 180, 180)));
-//        display.setBorder(BorderFactory.createBevelBorder(1));
-//        display.setBorder(BorderFactory.createEtchedBorder(1));
         mainPanel.add(display, gbc);
     }
     
+    /**
+     * Builds a row of buttons and adds it to the UI.
+     */
     private void prepRow2() {      
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.HORIZONTAL;
@@ -94,10 +110,11 @@ public class Calculator extends JFrame {
         gbc.gridy = 1;      
         JButton bDivide = new JButton("\u00F7"); // ÷ sign
         mainPanel.add(bDivide, gbc);
-        
-//        System.out.println(bClear.getBackground());
     }
     
+    /**
+     * Builds a row of buttons and adds it to the UI.
+     */
     private void prepRow3() {      
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.HORIZONTAL;
@@ -123,6 +140,9 @@ public class Calculator extends JFrame {
         mainPanel.add(bMultiply, gbc);
     }
     
+    /**
+     * Builds a row of buttons and adds it to the UI.
+     */
     private void prepRow4() {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.HORIZONTAL;
@@ -148,6 +168,9 @@ public class Calculator extends JFrame {
         mainPanel.add(bAdd, gbc);
     }
     
+    /**
+     * Builds a row of buttons and adds it to the UI.
+     */
     private void prepRow5() {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.HORIZONTAL;
@@ -173,6 +196,9 @@ public class Calculator extends JFrame {
         mainPanel.add(bSubtract, gbc);
     }
     
+    /**
+     * Builds a row of buttons and adds it to the UI.
+     */
     private void prepRow6() {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.HORIZONTAL;

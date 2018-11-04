@@ -9,7 +9,8 @@ package calculator;
 import java.util.Stack;
 
 /**
- *
+ * This class provides all calculation functions for Calculator.java.
+ * 
  * @author Mike Schulenberg
  */
 public class CalcFunctions{
