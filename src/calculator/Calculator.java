@@ -19,9 +19,11 @@ public class Calculator extends JFrame {
     private final int HEIGHT = 280;
     private JPanel mainPanel;
     private JLabel display;
+    private StringBuilder sb;
     
     public Calculator() {
         prepUI();
+        sb = new StringBuilder();
     }
     
     public static void main(String[] args) {
@@ -249,7 +251,36 @@ public class Calculator extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             String clickedButtonText = e.getActionCommand();
-            display.setText(clickedButtonText);
+            switch (clickedButtonText) {
+                case "C" :
+                    clearExpression();
+                    break;
+                case "\u00AB" :
+                    deleteLastChar();
+                    break;
+                case "=" :
+                    evaluateExpression();
+                    break;
+                default :
+                    updateExpression(clickedButtonText);
+            }
         }
+    }
+    
+    private void clearExpression() {
+        System.out.println("clicked C");
+    }
+    
+    private void deleteLastChar() {
+        System.out.println("clicked \u00AB");
+    }
+    
+    private void evaluateExpression() {
+        System.out.println("clicked =");
+    }
+    
+    private void updateExpression(String s) {
+        sb.append(s);
+        display.setText(sb.toString());
     }
 }
