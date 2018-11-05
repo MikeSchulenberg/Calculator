@@ -267,8 +267,13 @@ public class Calculator extends JFrame {
         }
     }
     
+    /**
+     * Zeroes out the text in the main display and clears the StringBuilder
+     * instance storing the current expression.
+     */
     private void clearExpression() {
-        System.out.println("clicked C");
+        display.setText("0");
+        sb.setLength(0);
     }
     
     private void deleteLastChar() {
