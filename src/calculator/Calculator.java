@@ -247,6 +247,9 @@ public class Calculator extends JFrame {
         mainPanel.add(bEquals, gbc);
     }
     
+    /**
+     * ActionListener for all buttons.
+     */
     private class BListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -255,7 +258,7 @@ public class Calculator extends JFrame {
                 case "C" :
                     clearExpression();
                     break;
-                case "\u00AB" :
+                case "\u00AB" : // « symbol
                     deleteLastChar();
                     break;
                 case "=" :
@@ -276,16 +279,40 @@ public class Calculator extends JFrame {
         sb.setLength(0);
     }
     
+    /**
+     * Deletes the last character in the current expression and updates the
+     * display.
+     */
     private void deleteLastChar() {
-        System.out.println("clicked \u00AB");
+        /* If deleting the only character in the expression, clear the 
+        StringBuilder instance and reset the display. */
+        if (sb.length() == 1) {
+            clearExpression();
+        }
+        
+        /* Otherwise, delete the last character in the StringBuilder if it
+        is not empty. */
+        else if (sb.length() > 1) {
+            sb.deleteCharAt(sb.length() - 1);
+            updateDisplay();
+        }
     }
     
+    // TODO: finish evaluateExpression()
     private void evaluateExpression() {
         System.out.println("clicked =");
     }
     
+    // TODO: prevent substrings of consecutive operators
     private void updateExpression(String s) {
         sb.append(s);
+        updateDisplay();
+    }
+    
+    /**
+     * Updates the main display with the current expression.
+     */
+    private void updateDisplay() {
         display.setText(sb.toString());
     }
 }
