@@ -294,7 +294,7 @@ public class Calculator extends JFrame {
         is not empty. */
         else if (sb.length() > 1) {
             sb.deleteCharAt(sb.length() - 1);
-            updateDisplay();
+            printExpression();
         }
     }
     
@@ -303,16 +303,36 @@ public class Calculator extends JFrame {
         System.out.println("clicked =");
     }
     
-    // TODO: prevent substrings of consecutive operators
-    private void updateExpression(String s) {
-        sb.append(s);
-        updateDisplay();
+    /**
+     * Updates the current expression with user input.
+     * 
+     * @param newChar The character, as a String, to be appended to the
+     * expression.
+     */
+    private void updateExpression(String newChar) {
+        final String VALID_OPERATORS = "\\+|-|\\u00D7|\\u00F7";
+        
+        // Prevent the user from entering two operators in a row.
+        if (sb.length() > 0) {
+            char lastChar = sb.charAt(sb.length() - 1);
+            /* If the last character in the StringBuilder instance is an
+            operator, and the new String to be appended is also an operator,
+            delete the last character from the StringBuilder so the new
+            operator can take its place. */
+            if (Character.toString(lastChar).matches(VALID_OPERATORS)
+                    && newChar.matches(VALID_OPERATORS)) {
+                deleteLastChar();
+            }
+        }
+        
+        sb.append(newChar);
+        printExpression();
     }
     
     /**
-     * Updates the main display with the current expression.
+     * Prints the current expression to the main display.
      */
-    private void updateDisplay() {
+    private void printExpression() {
         display.setText(sb.toString());
     }
 }
