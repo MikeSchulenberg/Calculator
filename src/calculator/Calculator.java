@@ -15,8 +15,6 @@ import java.awt.event.*;
  * @author Mike Schulenberg
  */
 public class Calculator extends JFrame {
-    private final int WIDTH = 250;
-    private final int HEIGHT = 280;
     private JPanel mainPanel;
     private JLabel display;
     private StringBuilder sb;
@@ -45,7 +43,9 @@ public class Calculator extends JFrame {
      */
     private void prepFrame() {
         setTitle("Calculator");
-        setSize(WIDTH, HEIGHT);
+        final int FRAME_WIDTH = 250;
+        final int FRAME_HEIGHT = 280;
+        setSize(FRAME_WIDTH, FRAME_HEIGHT);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
