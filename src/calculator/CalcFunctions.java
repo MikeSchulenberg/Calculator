@@ -15,7 +15,7 @@ import java.util.Stack;
  */
 public class CalcFunctions{
     private final Stack<Integer> VALUES = new Stack<>();
-    private final Stack<Character> OPERATORS = new Stack<>(); 
+    private final Stack<Character> OPERATORS = new Stack<>();
     
     /**
      * Evaluates an arithmetic expression according to operator precedence.
@@ -159,5 +159,10 @@ public class CalcFunctions{
         else {
             return true;
         } 
-    }  
+    }
+    
+    public String test(String str) {
+        System.out.println(str);
+        return "Polo";
+    }
 }

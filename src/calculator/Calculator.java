@@ -18,10 +18,12 @@ public class Calculator extends JFrame {
     private JPanel mainPanel;
     private JLabel display;
     private StringBuilder sb;
+    private CalcFunctions calcFunctions;
     
     public Calculator() {
         prepUI();
         sb = new StringBuilder();
+        calcFunctions = new CalcFunctions();
     }
     
     public static void main(String[] args) {
@@ -299,7 +301,8 @@ public class Calculator extends JFrame {
     
     // TODO: finish evaluateExpression()
     private void evaluateExpression() {
-        System.out.println("clicked =");
+        String result = calcFunctions.test("Marco");
+        printResult(result);
     }
     
     /**
@@ -333,5 +336,16 @@ public class Calculator extends JFrame {
      */
     private void printExpression() {
         display.setText(sb.toString());
+    }
+    
+    /**
+     * Prints the result of a calculation to the main display.
+     * 
+     * @param result The result of a calculation.
+     */
+    private void printResult(String result) {
+        sb.setLength(0);
+        sb.append(result);
+        display.setText(result);
     }
 }
