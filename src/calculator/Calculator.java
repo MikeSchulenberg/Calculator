@@ -18,12 +18,12 @@ public class Calculator extends JFrame {
     private JPanel mainPanel;
     private JLabel display;
     private StringBuilder sb;
-    private CalcFunctions calcFunctions;
+    private CalcHandler calcHandler;
     
     public Calculator() {
         prepUI();
         sb = new StringBuilder();
-        calcFunctions = new CalcFunctions();
+        calcHandler = new CalcHandler();
     }
     
     public static void main(String[] args) {
@@ -301,7 +301,7 @@ public class Calculator extends JFrame {
     
     // TODO: finish evaluateExpression()
     private void evaluateExpression() {
-        String result = calcFunctions.test("Marco");
+        String result = calcHandler.test("Marco");
         printResult(result);
     }
     

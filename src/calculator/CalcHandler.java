@@ -13,7 +13,7 @@ import java.util.Stack;
  * 
  * @author Mike Schulenberg
  */
-public class CalcFunctions{
+public class CalcHandler{
     private final Stack<Integer> VALUES = new Stack<>();
     private final Stack<Character> OPERATORS = new Stack<>();
     
