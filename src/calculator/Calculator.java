@@ -43,8 +43,7 @@ public class Calculator extends JFrame {
      */
     private void prepFrame() {
         setTitle("Calculator");
-        final int FRAME_WIDTH = 250;
-        final int FRAME_HEIGHT = 280;
+        final int FRAME_WIDTH = 250, FRAME_HEIGHT = 280;
         setSize(FRAME_WIDTH, FRAME_HEIGHT);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
