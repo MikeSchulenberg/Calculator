@@ -22,7 +22,7 @@ public class CalcHandler{
      * 
      * @param expr The expression to be evaluated.
      */
-    public int calculate(String expr) {       
+    public String calculate(String expr) {       
         final String VALID_OPERATORS = "\\+|-|\\*|/";
         
         /* Parse the expression into a stack of integers and a stack of 
@@ -87,7 +87,7 @@ public class CalcHandler{
             evaluateSubexpression();
         }
         
-        return VALUES.pop();
+        return String.valueOf(VALUES.pop());
     }
     
     /**
@@ -159,10 +159,5 @@ public class CalcHandler{
         else {
             return true;
         } 
-    }
-    
-    public String test(String str) {
-        System.out.println(str);
-        return "Polo";
     }
 }

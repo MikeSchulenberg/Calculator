@@ -19,15 +19,18 @@ public class Calculator extends JFrame {
     private JLabel display;
     private StringBuilder sb;
     private CalcHandler calcHandler;
+//    private Operators operators;
     
     public Calculator() {
         prepUI();
         sb = new StringBuilder();
         calcHandler = new CalcHandler();
+//        operators = new Operators();
     }
     
     public static void main(String[] args) {
         new Calculator();
+        Operators.test();
     }
     
     /**
@@ -115,7 +118,7 @@ public class Calculator extends JFrame {
         
         gbc.gridx = 3;
         gbc.gridy = 1;      
-        JButton bDivide = new JButton("\u00F7"); // ÷ sign
+        JButton bDivide = new JButton(Operators.DIVISION);
         bDivide.addActionListener(new BListener());
         mainPanel.add(bDivide, gbc);
     }
@@ -147,7 +150,7 @@ public class Calculator extends JFrame {
         
         gbc.gridx = 3;
         gbc.gridy = 2;
-        JButton bMultiply = new JButton("\u00D7"); // × sign
+        JButton bMultiply = new JButton(Operators.MULTIPLICATION);
         bMultiply.addActionListener(new BListener());
         mainPanel.add(bMultiply, gbc);
     }
@@ -179,7 +182,7 @@ public class Calculator extends JFrame {
         
         gbc.gridx = 3;
         gbc.gridy = 3;
-        JButton bAdd = new JButton("+");
+        JButton bAdd = new JButton(Operators.ADDITION);
         bAdd.addActionListener(new BListener());
         mainPanel.add(bAdd, gbc);
     }
@@ -211,7 +214,7 @@ public class Calculator extends JFrame {
         
         gbc.gridx = 3;
         gbc.gridy = 4;
-        JButton bSubtract = new JButton("-");
+        JButton bSubtract = new JButton(Operators.SUBTRACTION);
         bSubtract.addActionListener(new BListener());
         mainPanel.add(bSubtract, gbc);
     }
@@ -301,7 +304,7 @@ public class Calculator extends JFrame {
     
     // TODO: finish evaluateExpression()
     private void evaluateExpression() {
-        String result = calcHandler.test("Marco");
+        String result = calcHandler.calculate(sb.toString());
         printResult(result);
     }
     
