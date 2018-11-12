@@ -1,3 +1,7 @@
+// TODO: prevent division operations from dropping remainders
+// TODO: bug - clicking "=" on an empty expression causes crash
+// TODO: handle 'divide by 0' error
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -19,12 +23,10 @@ public class Calculator extends JFrame {
     private JLabel display;
     private StringBuilder sb;
     private CalcHandler calcHandler;
-    private Operators operators;
     
     public Calculator() {
         sb = new StringBuilder();
         calcHandler = new CalcHandler();
-        operators = new Operators();
         prepUI();
     }
     
@@ -117,7 +119,7 @@ public class Calculator extends JFrame {
         
         gbc.gridx = 3;
         gbc.gridy = 1;      
-        JButton bDivide = new JButton(operators.getDivisionSign());
+        JButton bDivide = new JButton(ValidOperators.DIVISION);
         bDivide.addActionListener(new BListener());
         mainPanel.add(bDivide, gbc);
     }
@@ -149,7 +151,7 @@ public class Calculator extends JFrame {
         
         gbc.gridx = 3;
         gbc.gridy = 2;
-        JButton bMultiply = new JButton(operators.getMultiplicationSign());
+        JButton bMultiply = new JButton(ValidOperators.MULTIPLICATION);
         bMultiply.addActionListener(new BListener());
         mainPanel.add(bMultiply, gbc);
     }
@@ -181,7 +183,7 @@ public class Calculator extends JFrame {
         
         gbc.gridx = 3;
         gbc.gridy = 3;
-        JButton bAdd = new JButton(operators.getAdditionSign());
+        JButton bAdd = new JButton(ValidOperators.ADDITION);
         bAdd.addActionListener(new BListener());
         mainPanel.add(bAdd, gbc);
     }
@@ -213,7 +215,7 @@ public class Calculator extends JFrame {
         
         gbc.gridx = 3;
         gbc.gridy = 4;
-        JButton bSubtract = new JButton(operators.getSubtractionSign());
+        JButton bSubtract = new JButton(ValidOperators.SUBTRACTION);
         bSubtract.addActionListener(new BListener());
         mainPanel.add(bSubtract, gbc);
     }
@@ -301,7 +303,9 @@ public class Calculator extends JFrame {
         }
     }
     
-    // TODO: finish evaluateExpression()
+    /**
+     * Submits the current expression for evaluation to a result.
+     */
     private void evaluateExpression() {
         String result = calcHandler.calculate(sb.toString());
         printResult(result);
@@ -321,8 +325,8 @@ public class Calculator extends JFrame {
             operator, and the new String to be appended is also an operator,
             delete the last character from the StringBuilder so the new
             operator can take its place. */           
-            if (operators.isOperator(Character.toString(lastChar))
-                    && operators.isOperator(newChar))
+            if (ValidOperators.isOperator(Character.toString(lastChar))
+                    && ValidOperators.isOperator(newChar))
             {
                 deleteLastChar();
             }

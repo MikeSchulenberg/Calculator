@@ -21,10 +21,9 @@ public class CalcHandler{
      * Evaluates an arithmetic expression according to operator precedence.
      * 
      * @param expr The expression to be evaluated.
+     * @return The result the expression evaluates to.
      */
-    public String calculate(String expr) {       
-        final String VALID_OPERATORS = "\\+|-|\\*|/";
-        
+    public String calculate(String expr) {              
         /* Parse the expression into a stack of integers and a stack of 
         characters. */
         for (int i = 0; i < expr.length(); ) {
@@ -72,7 +71,7 @@ public class CalcHandler{
             while the operator stack isn't empty, and while the operator on top
             of the stack has equal or higher precedence than the current
             operator. */
-            else if (Character.toString(currentChar).matches(VALID_OPERATORS)) {
+            else if (ValidOperators.isOperator(Character.toString(currentChar))) {
                 while (!OPERATORS.empty() 
                         && checkPrecedence(OPERATORS.peek(), currentChar)) {
                             evaluateSubexpression();
@@ -121,18 +120,18 @@ public class CalcHandler{
      */ 
     private int executeOperation(char operator, int a, int b) 
         throws Exception {
-            switch (operator) {
-                case '+':
-                    return a + b;
-                case '-':
-                    return a - b;
-                case '*':
-                    return a * b;
-                case '/':
+            switch (Character.toString(operator)) {
+                case ValidOperators.DIVISION:
                     if (b == 0) {
                         throw new Exception("DIVIDE BY 0 ERROR");
                     }                   
                     return a / b;
+                case ValidOperators.MULTIPLICATION:
+                    return a * b;
+                case ValidOperators.ADDITION:
+                    return a + b;
+                case ValidOperators.SUBTRACTION:
+                    return a - b;
                 default:
                     return 0;
             }
