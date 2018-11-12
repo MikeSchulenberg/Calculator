@@ -19,18 +19,17 @@ public class Calculator extends JFrame {
     private JLabel display;
     private StringBuilder sb;
     private CalcHandler calcHandler;
-//    private Operators operators;
+    private Operators operators;
     
     public Calculator() {
-        prepUI();
         sb = new StringBuilder();
         calcHandler = new CalcHandler();
-//        operators = new Operators();
+        operators = new Operators();
+        prepUI();
     }
     
     public static void main(String[] args) {
-        new Calculator();
-        Operators.test();
+        new Calculator();      
     }
     
     /**
@@ -118,7 +117,7 @@ public class Calculator extends JFrame {
         
         gbc.gridx = 3;
         gbc.gridy = 1;      
-        JButton bDivide = new JButton(Operators.DIVISION);
+        JButton bDivide = new JButton(operators.getDivisionSign());
         bDivide.addActionListener(new BListener());
         mainPanel.add(bDivide, gbc);
     }
@@ -150,7 +149,7 @@ public class Calculator extends JFrame {
         
         gbc.gridx = 3;
         gbc.gridy = 2;
-        JButton bMultiply = new JButton(Operators.MULTIPLICATION);
+        JButton bMultiply = new JButton(operators.getMultiplicationSign());
         bMultiply.addActionListener(new BListener());
         mainPanel.add(bMultiply, gbc);
     }
@@ -182,7 +181,7 @@ public class Calculator extends JFrame {
         
         gbc.gridx = 3;
         gbc.gridy = 3;
-        JButton bAdd = new JButton(Operators.ADDITION);
+        JButton bAdd = new JButton(operators.getAdditionSign());
         bAdd.addActionListener(new BListener());
         mainPanel.add(bAdd, gbc);
     }
@@ -214,7 +213,7 @@ public class Calculator extends JFrame {
         
         gbc.gridx = 3;
         gbc.gridy = 4;
-        JButton bSubtract = new JButton(Operators.SUBTRACTION);
+        JButton bSubtract = new JButton(operators.getSubtractionSign());
         bSubtract.addActionListener(new BListener());
         mainPanel.add(bSubtract, gbc);
     }
@@ -315,17 +314,16 @@ public class Calculator extends JFrame {
      * expression.
      */
     private void updateExpression(String newChar) {
-        final String VALID_OPERATORS = "\\+|-|\\u00D7|\\u00F7";
-        
-        // Prevent the user from entering two operators in a row.
+       // Prevent the user from entering two operators in a row.
         if (sb.length() > 0) {
             char lastChar = sb.charAt(sb.length() - 1);
             /* If the last character in the StringBuilder instance is an
             operator, and the new String to be appended is also an operator,
             delete the last character from the StringBuilder so the new
-            operator can take its place. */
-            if (Character.toString(lastChar).matches(VALID_OPERATORS)
-                    && newChar.matches(VALID_OPERATORS)) {
+            operator can take its place. */           
+            if (operators.isOperator(Character.toString(lastChar))
+                    && operators.isOperator(newChar))
+            {
                 deleteLastChar();
             }
         }
