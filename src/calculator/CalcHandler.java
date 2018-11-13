@@ -140,18 +140,24 @@ public class CalcHandler{
     /**
      * Determines the precedence of 2 operators.
      * 
-     * @param operator1 The operator on the top of the operators stack.
-     * @param operator2 The current operator.
+     * @param aOperator1 The operator on the top of the operators stack.
+     * @param aOperator2 The current operator.
      * @return "true" if `operator1` has precedence over `operator2`, false
      * otherwise.
      */
-    private boolean checkPrecedence(char operator1, char operator2) {       
-        if (operator1 == '(' || operator1 == ')') {
+    private boolean checkPrecedence(char aOperator1, char aOperator2) {       
+        String operator1 = Character.toString(aOperator1);
+        String operator2 = Character.toString(aOperator2);
+        
+        if (operator1.equals("(") || operator1.equals(")")) {
             return false;
         }
         
-        if ((operator1 == '+' || operator1 == '-')
-                && (operator2 == '*' || operator2 == '/')) {
+        if ((operator1.equals(ValidOperators.ADDITION) || 
+                operator1.equals(ValidOperators.SUBTRACTION))
+                && 
+                (operator2.equals(ValidOperators.MULTIPLICATION) || 
+                operator2.equals(ValidOperators.DIVISION))) {
             return false;
         }
         
