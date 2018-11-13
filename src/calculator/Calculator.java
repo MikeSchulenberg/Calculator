@@ -2,6 +2,7 @@
 // TODO: handle 'divide by 0' error
 // TODO: streamline button prep
 // TODO: add keyboard input
+// TODO: experiment increasing the font size on buttons and display
 
 /*
  * To change this license header, choose License Headers in Project Properties.
