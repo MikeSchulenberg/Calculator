@@ -1,6 +1,7 @@
 // TODO: prevent division operations from dropping remainders
-// TODO: bug - clicking "=" on an empty expression causes crash
 // TODO: handle 'divide by 0' error
+// TODO: streamline button prep
+// TODO: add keyboard input
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -307,8 +308,10 @@ public class Calculator extends JFrame {
      * Submits the current expression for evaluation to a result.
      */
     private void evaluateExpression() {
-        String result = calcHandler.calculate(sb.toString());
-        printResult(result);
+        if (sb.length() > 0) {
+            String result = calcHandler.calculate(sb.toString());
+            printResult(result);
+        }  
     }
     
     /**
