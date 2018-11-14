@@ -6,6 +6,7 @@
 
 package calculator;
 
+import java.text.DecimalFormat;
 import java.util.Stack;
 
 /**
@@ -14,7 +15,7 @@ import java.util.Stack;
  * @author Mike Schulenberg
  */
 public class CalcHandler{
-    private final Stack<Integer> VALUES = new Stack<>();
+    private final Stack<Double> VALUES = new Stack<>();
     private final Stack<Character> OPERATORS = new Stack<>();
     
     /**
@@ -46,7 +47,7 @@ public class CalcHandler{
                     }                  
                 }
                 
-                VALUES.push(Integer.parseInt(currentNum));
+                VALUES.push(Double.parseDouble(currentNum));
             }
             
             // Push left parentheses to the operator stack
@@ -86,7 +87,10 @@ public class CalcHandler{
             evaluateSubexpression();
         }
         
-        return String.valueOf(VALUES.pop());
+        double result = VALUES.pop();
+        DecimalFormat df = new DecimalFormat("0.###");
+        
+        return df.format(result);
     }
     
     /**
@@ -96,11 +100,11 @@ public class CalcHandler{
         char operator = OPERATORS.pop();
 
         // Get the two operands in the correct order
-        int b = VALUES.pop();
-        int a = VALUES.pop();
+        double b = VALUES.pop();
+        double a = VALUES.pop();
 
         try {
-            int result = executeOperation(operator, a, b);
+            double result = executeOperation(operator, a, b);
             VALUES.push(result);
         }
 
@@ -118,7 +122,7 @@ public class CalcHandler{
      * @return The result of the operation.
      * @throws Exception 
      */ 
-    private int executeOperation(char operator, int a, int b) 
+    private double executeOperation(char operator, double a, double b) 
         throws Exception {
             switch (Character.toString(operator)) {
                 case ValidOperators.DIVISION:
@@ -153,11 +157,11 @@ public class CalcHandler{
             return false;
         }
         
-        if ((operator1.equals(ValidOperators.ADDITION) || 
-                operator1.equals(ValidOperators.SUBTRACTION))
+        if ((operator1.equals(ValidOperators.ADDITION) 
+                || operator1.equals(ValidOperators.SUBTRACTION))
                 && 
-                (operator2.equals(ValidOperators.MULTIPLICATION) || 
-                operator2.equals(ValidOperators.DIVISION))) {
+                (operator2.equals(ValidOperators.MULTIPLICATION) 
+                || operator2.equals(ValidOperators.DIVISION))) {
             return false;
         }
         

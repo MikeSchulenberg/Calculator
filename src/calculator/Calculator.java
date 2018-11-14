@@ -1,4 +1,3 @@
-// TODO: prevent division operations from dropping remainders
 // TODO: handle 'divide by 0' error
 // TODO: streamline button prep
 // TODO: add keyboard input
