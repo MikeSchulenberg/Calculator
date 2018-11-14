@@ -43,6 +43,11 @@ public class CalcHandler{
         return df.format(result);
     }
     
+    /**
+     * Parses the expression into a stack of integers and a stack of characters.
+     * 
+     * @param expr The expression to be evaluated.
+     */
     private void parseExpression(String expr) {
         /* Parse the expression into a stack of integers and a stack of 
         characters. */
@@ -78,8 +83,7 @@ public class CalcHandler{
             /* If the current character is a right parenthesis, solve the
             subexpression it contains. */
             else if (currentChar == ')') {
-                while (OPERATORS.peek() != '(') {
-                    
+                while (OPERATORS.peek() != '(') {                   
                     evaluateSubexpression();
                 }
                 
