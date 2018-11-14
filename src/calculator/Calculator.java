@@ -1,4 +1,5 @@
 // TODO: handle 'divide by 0' error
+// TODO: bug - bad expression syntax causes Exceptions
 // TODO: streamline button prep
 // TODO: add keyboard input
 // TODO: experiment increasing the font size on buttons and display
