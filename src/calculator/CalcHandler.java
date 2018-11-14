@@ -25,6 +25,25 @@ public class CalcHandler{
      * @return The result the expression evaluates to.
      */
     public String calculate(String expr) {              
+        try {
+            parseExpression(expr);
+        }
+        
+        catch (Exception e) {
+            return "SYNTAX ERROR";
+        }
+        
+        while (!OPERATORS.empty()) {
+            evaluateSubexpression();
+        }
+        
+        double result = VALUES.pop();
+        DecimalFormat df = new DecimalFormat("0.###");
+        
+        return df.format(result);
+    }
+    
+    private void parseExpression(String expr) {
         /* Parse the expression into a stack of integers and a stack of 
         characters. */
         for (int i = 0; i < expr.length(); ) {
@@ -82,15 +101,6 @@ public class CalcHandler{
                 i++;
             }
         }
-        
-        while (!OPERATORS.empty()) {
-            evaluateSubexpression();
-        }
-        
-        double result = VALUES.pop();
-        DecimalFormat df = new DecimalFormat("0.###");
-        
-        return df.format(result);
     }
     
     /**

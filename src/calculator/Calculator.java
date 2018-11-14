@@ -1,8 +1,8 @@
 // TODO: handle 'divide by 0' error
-// TODO: bug - bad expression syntax causes Exceptions
 // TODO: streamline button prep
 // TODO: add keyboard input
 // TODO: experiment increasing the font size on buttons and display
+// TODO: improve handling of BACK button text
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -353,8 +353,13 @@ public class Calculator extends JFrame {
      * @param result The result of a calculation.
      */
     private void printResult(String result) {
-        sb.setLength(0);
-        sb.append(result);
+        sb.setLength(0);       
         display.setText(result);
+        
+        /* Append the result to the Stringbuilder instance if it's not an
+        error message. */
+        if (!(result.toLowerCase().contains("error"))) {
+            sb.append(result);
+        }     
     }
 }
