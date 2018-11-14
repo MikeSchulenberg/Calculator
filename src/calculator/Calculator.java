@@ -1,5 +1,6 @@
 // TODO: handle 'divide by 0' error
 // TODO: bug - program breaks when parsing decimal numbers
+// TODO: prevent consecutive decimal points
 // TODO: streamline button prep
 // TODO: add keyboard input
 // TODO: experiment increasing the font size on buttons and display
