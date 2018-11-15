@@ -1,4 +1,3 @@
-// TODO: handle 'divide by 0' error
 // TODO: bug - program breaks when parsing decimal numbers
 // TODO: prevent consecutive decimal points
 // TODO: streamline button prep
@@ -319,7 +318,7 @@ public class Calculator extends JFrame {
         }    
         
         catch (Exception e) {
-            
+            printMessage(e.getMessage());
         }
     }
     
@@ -370,7 +369,7 @@ public class Calculator extends JFrame {
      * 
      * @param msg 
      */
-    public void printMessage(String msg) {
+    private void printMessage(String msg) {
         updateDisplay(msg);
     }
     

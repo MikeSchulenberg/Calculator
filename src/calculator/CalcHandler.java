@@ -29,6 +29,8 @@ public class CalcHandler{
      * 
      * @param expr The expression to be evaluated.
      * @return The result the expression evaluates to.
+     * @throws Exception When parsing of an expression fails or when a "divide
+     * by 0" error occurs.
      */
     public String calculate(String expr) throws Exception {              
         try {
@@ -36,8 +38,14 @@ public class CalcHandler{
         }
         
         catch (Exception e) {
-            ui.printMessage("SYNTAX ERROR");
-            throw new Exception();
+            String msg = e.getMessage();
+            if (msg == null) {
+                throw new Exception("SYNTAX ERROR");
+            }
+            
+            else {
+                throw new Exception(e.getMessage());
+            }            
         }
         
         while (!OPERATORS.empty()) {
@@ -54,8 +62,9 @@ public class CalcHandler{
      * Parses the expression into a stack of integers and a stack of characters.
      * 
      * @param expr The expression to be evaluated.
+     * @throws Exception On attempts to divide a number by 0.
      */
-    private void parseExpression(String expr) {
+    private void parseExpression(String expr) throws Exception {
         /* Parse the expression into a stack of integers and a stack of 
         characters. */
         for (int i = 0; i < expr.length(); ) {
@@ -91,7 +100,13 @@ public class CalcHandler{
             subexpression it contains. */
             else if (currentChar == ')') {
                 while (OPERATORS.peek() != '(') {                   
-                    evaluateSubexpression();
+                    try {
+                        evaluateSubexpression();
+                    }
+                    
+                    catch (Exception e) {
+                        throw new Exception(e.getMessage());
+                    }
                 }
                 
                 OPERATORS.pop();
@@ -105,7 +120,13 @@ public class CalcHandler{
             else if (ValidOperators.isOperator(Character.toString(currentChar))) {
                 while (!OPERATORS.empty() 
                         && checkPrecedence(OPERATORS.peek(), currentChar)) {
-                            evaluateSubexpression();
+                    try {
+                        evaluateSubexpression();
+                    }
+                    
+                    catch (Exception e) {
+                        throw new Exception(e.getMessage());
+                    }
                 }
                 
                 OPERATORS.push(currentChar);
@@ -116,8 +137,10 @@ public class CalcHandler{
     
     /**
      * Evaluates a subexpression containing two values and an operator.
+     * 
+     * @throws Exception On attempts to divide a number by 0.
      */
-    private void evaluateSubexpression() {
+    private void evaluateSubexpression() throws Exception {
         char operator = OPERATORS.pop();
 
         // Get the two operands in the correct order
@@ -130,7 +153,7 @@ public class CalcHandler{
         }
 
         catch (Exception e) {
-            System.out.println(e.getMessage());
+            throw new Exception(e.getMessage());
         }               
     }
     
@@ -141,7 +164,7 @@ public class CalcHandler{
      * @param a The operation's first operand.
      * @param b The operation's second operand.
      * @return The result of the operation.
-     * @throws Exception 
+     * @throws Exception On attempts to divide a number by 0.
      */ 
     private double executeOperation(char operator, double a, double b) 
         throws Exception {
