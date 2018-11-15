@@ -1,6 +1,3 @@
-// TODO: bug - program breaks when parsing decimal numbers
-// TODO: prevent consecutive decimal points
-// TODO: starting a new expression with a decimal point should include a leading 0
 // TODO: streamline button prep
 // TODO: add keyboard input
 // TODO: experiment increasing the font size on buttons and display
@@ -330,16 +327,36 @@ public class Calculator extends JFrame {
      * expression.
      */
     private void updateExpression(String newChar) {
-       // Prevent the user from entering two operators in a row.
-        if (sb.length() > 0) {
-            char lastChar = sb.charAt(sb.length() - 1);
+        /* If a decimal point is the first character in a new expression,
+        prepend the expression with a 0. */
+        if (sb.length() == 0 && newChar.equals(".")) {
+            sb.append("0");
+        }
+
+        // Prevent the user from entering two operators in a row.
+        else if (sb.length() > 0) {
+//            char lastChar = sb.charAt(sb.length() - 1);
+            String lastChar = Character.toString(sb.charAt(sb.length() - 1));
+            
             /* If the last character in the StringBuilder instance is an
             operator, and the new String to be appended is also an operator,
             delete the last character from the StringBuilder so the new
             operator can take its place. */           
-            if (ValidOperators.isOperator(Character.toString(lastChar))
+            if (ValidOperators.isOperator(lastChar)
                     && ValidOperators.isOperator(newChar))
             {
+                deleteLastChar();
+            }
+            
+            /* If a decimal point is the first character in a new term, prepend
+            the new term with a 0. */
+            else if (ValidOperators.isOperator(lastChar)
+                    && newChar.equals(".")) {
+                sb.append("0");
+            }
+            
+            // Prevent consecutive decimal points.
+            else if (lastChar.equals(".") && newChar.equals(".")) {
                 deleteLastChar();
             }
         }

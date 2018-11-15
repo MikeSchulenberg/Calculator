@@ -75,8 +75,10 @@ public class CalcHandler{
             if (currentChar >= '0' && currentChar <= '9') {
                 /* A number might contain multiple digits. 
                 Collect all digits in the current number. */
-                while (i < expr.length() && currentChar >= '0' 
-                        && currentChar <= '9') {
+                while ((i < expr.length() && currentChar >= '0' 
+                        && currentChar <= '9')
+                        ||
+                        (i < expr.length() && currentChar == '.')) {
                     currentNum += currentChar;
                     i++; 
                     
