@@ -1,5 +1,6 @@
 // TODO: bug - program breaks when parsing decimal numbers
 // TODO: prevent consecutive decimal points
+// TODO: starting a new expression with a decimal point should include a leading 0
 // TODO: streamline button prep
 // TODO: add keyboard input
 // TODO: experiment increasing the font size on buttons and display
