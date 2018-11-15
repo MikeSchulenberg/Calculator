@@ -29,8 +29,8 @@ public class CalcHandler{
      * 
      * @param expr The expression to be evaluated.
      * @return The result the expression evaluates to.
-     * @throws Exception When parsing of an expression fails or when a "divide
-     * by 0" error occurs.
+     * @throws Exception When parsing of an expression fails, when a "divide
+     * by 0" error occurs, or when a bad decimal number is parsed.
      */
     public String calculate(String expr) throws Exception {              
         try {
@@ -63,6 +63,7 @@ public class CalcHandler{
      * 
      * @param expr The expression to be evaluated.
      * @throws Exception On attempts to divide a number by 0.
+     * @throws NumberFormatException When invalid decimal numbers are parsed.
      */
     private void parseExpression(String expr) throws Exception {
         /* Parse the expression into a stack of integers and a stack of 
@@ -89,7 +90,13 @@ public class CalcHandler{
                     }                  
                 }
                 
-                VALUES.push(Double.parseDouble(currentNum));
+                try {
+                    VALUES.push(Double.parseDouble(currentNum));
+                }
+                
+                catch (NumberFormatException e) {
+                    throw new Exception("INVALID DECIMAL POINT");
+                }
             }
             
             // Push left parentheses to the operator stack
