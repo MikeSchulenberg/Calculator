@@ -15,8 +15,14 @@ import java.util.Stack;
  * @author Mike Schulenberg
  */
 public class CalcHandler{
+    private Calculator ui;
+    
     private final Stack<Double> VALUES = new Stack<>();
     private final Stack<Character> OPERATORS = new Stack<>();
+    
+    public CalcHandler(Calculator ui) {
+        this.ui = ui;
+    }
     
     /**
      * Evaluates an arithmetic expression according to operator precedence.
@@ -24,13 +30,14 @@ public class CalcHandler{
      * @param expr The expression to be evaluated.
      * @return The result the expression evaluates to.
      */
-    public String calculate(String expr) {              
+    public String calculate(String expr) throws Exception {              
         try {
             parseExpression(expr);
         }
         
         catch (Exception e) {
-            return "SYNTAX ERROR";
+            ui.printMessage("SYNTAX ERROR");
+            throw new Exception();
         }
         
         while (!OPERATORS.empty()) {

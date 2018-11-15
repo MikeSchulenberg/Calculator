@@ -30,7 +30,7 @@ public class Calculator extends JFrame {
     
     public Calculator() {
         sb = new StringBuilder();
-        calcHandler = new CalcHandler();
+        calcHandler = new CalcHandler(this);
         prepUI();
     }
     
@@ -311,10 +311,16 @@ public class Calculator extends JFrame {
      * Submits the current expression for evaluation to a result.
      */
     private void evaluateExpression() {
-        if (sb.length() > 0) {
-            String result = calcHandler.calculate(sb.toString());
-            printResult(result);
-        }  
+        try {
+            if (sb.length() > 0) {
+                String result = calcHandler.calculate(sb.toString());
+                printResult(result);
+            }
+        }    
+        
+        catch (Exception e) {
+            
+        }
     }
     
     /**
@@ -355,13 +361,26 @@ public class Calculator extends JFrame {
      * @param result The result of a calculation.
      */
     private void printResult(String result) {
+        updateDisplay(result);
+        sb.append(result);
+    }
+    
+    /**
+     * TODO: write comment
+     * 
+     * @param msg 
+     */
+    public void printMessage(String msg) {
+        updateDisplay(msg);
+    }
+    
+    /**
+     * TODO: write comment
+     * 
+     * @param newText 
+     */
+    private void updateDisplay(String newText) {
         sb.setLength(0);       
-        display.setText(result);
-        
-        /* Append the result to the Stringbuilder instance if it's not an
-        error message. */
-        if (!(result.toLowerCase().contains("error"))) {
-            sb.append(result);
-        }     
+        display.setText(newText);
     }
 }
