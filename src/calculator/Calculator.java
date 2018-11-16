@@ -335,7 +335,6 @@ public class Calculator extends JFrame {
 
         // Prevent the user from entering two operators in a row.
         else if (sb.length() > 0) {
-//            char lastChar = sb.charAt(sb.length() - 1);
             String lastChar = Character.toString(sb.charAt(sb.length() - 1));
             
             /* If the last character in the StringBuilder instance is an
@@ -383,18 +382,19 @@ public class Calculator extends JFrame {
     }
     
     /**
-     * TODO: write comment
+     * Prints text, such as error messages, to the main display.
      * 
-     * @param msg 
+     * @param msg The text to print to the display.
      */
     private void printMessage(String msg) {
         updateDisplay(msg);
     }
     
     /**
-     * TODO: write comment
+     * Helper function that clears the current String in the StringBuilder
+     * instance and updates the text in the main display.
      * 
-     * @param newText 
+     * @param newText The text to show in the display.
      */
     private void updateDisplay(String newText) {
         sb.setLength(0);       
