@@ -1,7 +1,6 @@
 // TODO: streamline button prep
 // TODO: add keyboard input
 // TODO: experiment increasing the font size on buttons and display
-// TODO: improve handling of BACK button text
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -20,10 +19,13 @@ import java.awt.event.*;
  * @author Mike Schulenberg
  */
 public class Calculator extends JFrame {
-    private JPanel mainPanel;
-    private JLabel display;
     private StringBuilder sb;
     private CalcHandler calcHandler;
+    
+    private JPanel mainPanel;
+    private JLabel display;
+
+    private final String DELETE_SYMBOL = "\u00AB"; // « symbol
     
     public Calculator() {
         sb = new StringBuilder();
@@ -242,7 +244,7 @@ public class Calculator extends JFrame {
         
         gbc.gridx = 2;
         gbc.gridy = 5;
-        JButton bBack = new JButton("\u00AB"); // « symbol
+        JButton bBack = new JButton(DELETE_SYMBOL);
         bBack.addActionListener(new BListener());
         mainPanel.add(bBack, gbc);
         
@@ -264,7 +266,7 @@ public class Calculator extends JFrame {
                 case "C" :
                     clearExpression();
                     break;
-                case "\u00AB" : // « symbol
+                case DELETE_SYMBOL :
                     deleteLastChar();
                     break;
                 case "=" :
