@@ -1,6 +1,6 @@
-// TODO: streamline button prep
 // TODO: add keyboard input
 // TODO: experiment increasing the font size on buttons and display
+// TODO: bug - expressions such as (2+3)2 and 2(2+3) give an incorrect answer
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -99,160 +99,165 @@ public class Calculator extends JFrame {
      * Builds a row of buttons and adds it to the UI.
      */
     private void prepRow2() {      
+        JButton newButton;
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.HORIZONTAL;
         
         gbc.gridx = 0;
         gbc.gridy = 1;
-        JButton bClear = new JButton("C");
-        bClear.addActionListener(new BListener());
-        mainPanel.add(bClear, gbc);
+        newButton = new JButton("C");
+        newButton.addActionListener(new BListener());
+        mainPanel.add(newButton, gbc);
         
         gbc.gridx = 1;
         gbc.gridy = 1;
-        JButton bLeftParen = new JButton("(");
-        bLeftParen.addActionListener(new BListener());
-        mainPanel.add(bLeftParen, gbc);
+        newButton = new JButton("(");
+        newButton.addActionListener(new BListener());
+        mainPanel.add(newButton, gbc);
         
         gbc.gridx = 2;
         gbc.gridy = 1;
-        JButton bRightParen = new JButton(")");
-        bRightParen.addActionListener(new BListener());
-        mainPanel.add(bRightParen, gbc);
+        newButton = new JButton(")");
+        newButton.addActionListener(new BListener());
+        mainPanel.add(newButton, gbc);
         
         gbc.gridx = 3;
         gbc.gridy = 1;      
-        JButton bDivide = new JButton(ValidOperators.DIVISION);
-        bDivide.addActionListener(new BListener());
-        mainPanel.add(bDivide, gbc);
+        newButton = new JButton(ValidOperators.DIVISION);
+        newButton.addActionListener(new BListener());
+        mainPanel.add(newButton, gbc);
     }
     
     /**
      * Builds a row of buttons and adds it to the UI.
      */
     private void prepRow3() {      
+        JButton newButton;
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.HORIZONTAL;
         
         gbc.gridx = 0;
         gbc.gridy = 2;
-        JButton b7 = new JButton("7");
-        b7.addActionListener(new BListener());
-        mainPanel.add(b7, gbc);
+        newButton = new JButton("7");
+        newButton.addActionListener(new BListener());
+        mainPanel.add(newButton, gbc);
         
         gbc.gridx = 1;
         gbc.gridy = 2;
-        JButton b8 = new JButton("8");
-        b8.addActionListener(new BListener());
-        mainPanel.add(b8, gbc);
+        newButton = new JButton("8");
+        newButton.addActionListener(new BListener());
+        mainPanel.add(newButton, gbc);
         
         gbc.gridx = 2;
         gbc.gridy = 2;
-        JButton b9 = new JButton("9");
-        b9.addActionListener(new BListener());
-        mainPanel.add(b9, gbc);
+        newButton = new JButton("9");
+        newButton.addActionListener(new BListener());
+        mainPanel.add(newButton, gbc);
         
         gbc.gridx = 3;
         gbc.gridy = 2;
-        JButton bMultiply = new JButton(ValidOperators.MULTIPLICATION);
-        bMultiply.addActionListener(new BListener());
-        mainPanel.add(bMultiply, gbc);
+        newButton = new JButton(ValidOperators.MULTIPLICATION);
+        newButton.addActionListener(new BListener());
+        mainPanel.add(newButton, gbc);
     }
     
     /**
      * Builds a row of buttons and adds it to the UI.
      */
     private void prepRow4() {
+        JButton newButton;
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.HORIZONTAL;
         
         gbc.gridx = 0;
         gbc.gridy = 3;
-        JButton b4 = new JButton("4");
-        b4.addActionListener(new BListener());
-        mainPanel.add(b4, gbc);
+        newButton = new JButton("4");
+        newButton.addActionListener(new BListener());
+        mainPanel.add(newButton, gbc);
         
         gbc.gridx = 1;
         gbc.gridy = 3;
-        JButton b5 = new JButton("5");
-        b5.addActionListener(new BListener());
-        mainPanel.add(b5, gbc);
+        newButton = new JButton("5");
+        newButton.addActionListener(new BListener());
+        mainPanel.add(newButton, gbc);
         
         gbc.gridx = 2;
         gbc.gridy = 3;
-        JButton b6 = new JButton("6");
-        b6.addActionListener(new BListener());
-        mainPanel.add(b6, gbc);
+        newButton = new JButton("6");
+        newButton.addActionListener(new BListener());
+        mainPanel.add(newButton, gbc);
         
         gbc.gridx = 3;
         gbc.gridy = 3;
-        JButton bAdd = new JButton(ValidOperators.ADDITION);
-        bAdd.addActionListener(new BListener());
-        mainPanel.add(bAdd, gbc);
+        newButton = new JButton(ValidOperators.ADDITION);
+        newButton.addActionListener(new BListener());
+        mainPanel.add(newButton, gbc);
     }
     
     /**
      * Builds a row of buttons and adds it to the UI.
      */
     private void prepRow5() {
+        JButton newButton;
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.HORIZONTAL;
         
         gbc.gridx = 0;
         gbc.gridy = 4;
-        JButton b1 = new JButton("1");
-        b1.addActionListener(new BListener());
-        mainPanel.add(b1, gbc);
+        newButton = new JButton("1");
+        newButton.addActionListener(new BListener());
+        mainPanel.add(newButton, gbc);
         
         gbc.gridx = 1;
         gbc.gridy = 4;
-        JButton b2 = new JButton("2");
-        b2.addActionListener(new BListener());
-        mainPanel.add(b2, gbc);
+        newButton = new JButton("2");
+        newButton.addActionListener(new BListener());
+        mainPanel.add(newButton, gbc);
         
         gbc.gridx = 2;
         gbc.gridy = 4;
-        JButton b3 = new JButton("3");
-        b3.addActionListener(new BListener());
-        mainPanel.add(b3, gbc);
+        newButton = new JButton("3");
+        newButton.addActionListener(new BListener());
+        mainPanel.add(newButton, gbc);
         
         gbc.gridx = 3;
         gbc.gridy = 4;
-        JButton bSubtract = new JButton(ValidOperators.SUBTRACTION);
-        bSubtract.addActionListener(new BListener());
-        mainPanel.add(bSubtract, gbc);
+        newButton = new JButton(ValidOperators.SUBTRACTION);
+        newButton.addActionListener(new BListener());
+        mainPanel.add(newButton, gbc);
     }
     
     /**
      * Builds a row of buttons and adds it to the UI.
      */
     private void prepRow6() {
+        JButton newButton;
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.HORIZONTAL;
         
         gbc.gridx = 0;
         gbc.gridy = 5;
-        JButton b0 = new JButton("0");
-        b0.addActionListener(new BListener());
-        mainPanel.add(b0, gbc);
+        newButton = new JButton("0");
+        newButton.addActionListener(new BListener());
+        mainPanel.add(newButton, gbc);
         
         gbc.gridx = 1;
         gbc.gridy = 5;
-        JButton bDecimal = new JButton(".");
-        bDecimal.addActionListener(new BListener());
-        mainPanel.add(bDecimal, gbc);
+        newButton = new JButton(".");
+        newButton.addActionListener(new BListener());
+        mainPanel.add(newButton, gbc);
         
         gbc.gridx = 2;
         gbc.gridy = 5;
-        JButton bBack = new JButton(DELETE_SYMBOL);
-        bBack.addActionListener(new BListener());
-        mainPanel.add(bBack, gbc);
+        newButton = new JButton(DELETE_SYMBOL);
+        newButton.addActionListener(new BListener());
+        mainPanel.add(newButton, gbc);
         
         gbc.gridx = 3;
         gbc.gridy = 5;
-        JButton bEquals = new JButton("=");
-        bEquals.addActionListener(new BListener());
-        mainPanel.add(bEquals, gbc);
+        newButton = new JButton("=");
+        newButton.addActionListener(new BListener());
+        mainPanel.add(newButton, gbc);
     }
     
     /**
