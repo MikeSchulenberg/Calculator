@@ -101,13 +101,23 @@ public class CalcHandler{
             
             // Push left parentheses to the operator stack
             else if (currentChar == '(') {
+                /* Insert a multiplication operator between numbers and left
+                parentheses so subexpressions such as 2(2+3) are evaluated
+                properly. */
+                if (i > 0) {
+                    char previousChar = expr.charAt(i - 1);
+                    if (previousChar >= '0' && previousChar <= '9') {
+                        OPERATORS.push(ValidOperators.MULTIPLICATION.charAt(0));
+                    }
+                }
+                
                 OPERATORS.push(expr.charAt(i));
                 i++;
             }
             
             /* If the current character is a right parenthesis, solve the
             subexpression it contains. */
-            else if (currentChar == ')') {
+            else if (currentChar == ')') {  
                 while (OPERATORS.peek() != '(') {                   
                     try {
                         evaluateSubexpression();
@@ -119,6 +129,17 @@ public class CalcHandler{
                 }
                 
                 OPERATORS.pop();
+                
+                /* Insert a multiplication operator between numbers and right
+                parentheses so subexpressions such as (2+3)2 are evaluated
+                properly. */
+                if (i < expr.length() - 1) {
+                    char nextChar = expr.charAt(i + 1);
+                    if (nextChar >= '0' && nextChar <= '9') {
+                        OPERATORS.push(ValidOperators.MULTIPLICATION.charAt(0));
+                    }
+                }
+                
                 i++;
             }
             

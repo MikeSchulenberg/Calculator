@@ -1,6 +1,5 @@
 // TODO: add keyboard input
 // TODO: experiment increasing the font size on buttons and display
-// TODO: bug - expressions such as (2+3)2 and 2(2+3) give an incorrect answer
 
 /*
  * To change this license header, choose License Headers in Project Properties.
