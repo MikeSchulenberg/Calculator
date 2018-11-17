@@ -111,7 +111,7 @@ public class CalcHandler{
                     }
                 }
                 
-                OPERATORS.push(expr.charAt(i));
+                OPERATORS.push(currentChar);
                 i++;
             }
             
