@@ -1,7 +1,7 @@
 // TODO: add keyboard input
 // TODO: experiment increasing the font size on buttons and display
-// TODO: bug - starting a new expression with an operator, such as +3, -2, etc., causes problems during evaluation
 // TODO: attempting to overflow the width of the main display resizes the program in an undesirable way
+// TODO: bug - if the last character in an expression is an operator, no result is returned
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -344,10 +344,12 @@ public class Calculator extends JFrame {
      * expression.
      */
     private void updateExpression(String newChar) {
-        /* If a decimal point is the first character in a new expression,
-        prepend the expression with a 0. */
-        if (sb.length() == 0 && newChar.equals(".")) {
-            sb.append("0");
+        /* If the first character in a new expression if a decimal point or an
+        operator, prepend the expression with a 0. */
+        if (sb.length() == 0) {
+            if (newChar.equals(".") || ValidOperators.isOperator(newChar)) {
+                    sb.append("0");
+            }
         }
 
         // Prevent the user from entering two operators in a row.
