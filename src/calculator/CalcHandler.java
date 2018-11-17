@@ -15,14 +15,8 @@ import java.util.Stack;
  * @author Mike Schulenberg
  */
 public class CalcHandler{
-    private Calculator ui;
-    
     private final Stack<Double> VALUES = new Stack<>();
     private final Stack<Character> OPERATORS = new Stack<>();
-    
-    public CalcHandler(Calculator ui) {
-        this.ui = ui;
-    }
     
     /**
      * Evaluates an arithmetic expression according to operator precedence.

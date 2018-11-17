@@ -1,5 +1,7 @@
 // TODO: add keyboard input
 // TODO: experiment increasing the font size on buttons and display
+// TODO: bug - entering an subexpression containing parentheses with nothing between them, i.e. (), isn't handled properly
+// TODO: bug - if an expression evaluates to 0, new input is prepended with that 0
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -28,7 +30,7 @@ public class Calculator extends JFrame {
     
     public Calculator() {
         sb = new StringBuilder();
-        calcHandler = new CalcHandler(this);
+        calcHandler = new CalcHandler();
         prepUI();
     }
     
