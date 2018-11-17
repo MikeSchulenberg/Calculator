@@ -38,7 +38,7 @@ public class CalcHandler{
             }
             
             else {
-                throw new Exception(e.getMessage());
+                throw new Exception(msg);
             }            
         }
         

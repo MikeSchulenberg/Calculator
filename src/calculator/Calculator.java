@@ -1,7 +1,6 @@
 // TODO: add keyboard input
 // TODO: experiment increasing the font size on buttons and display
 // TODO: attempting to overflow the width of the main display resizes the program in an undesirable way
-// TODO: bug - if the last character in an expression is an operator, no result is returned
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -318,7 +317,7 @@ public class Calculator extends JFrame {
     private void evaluateExpression() {
         try {
             if (sb.length() > 0) {
-                String result = calcHandler.calculate(sb.toString());
+                String result = calcHandler.calculate(sb.toString());               
                 
                 /* Prevent new expressions from prepending a 0 after evaluating
                 an expression that results in 0. */
@@ -333,7 +332,14 @@ public class Calculator extends JFrame {
         }    
         
         catch (Exception e) {
-            printMessage(e.getMessage());
+            String msg = e.getMessage();
+            if (msg == null) {
+                printMessage("SYNTAX ERROR");
+            }
+            
+            else {
+                printMessage(msg);
+            } 
         }
     }
     
