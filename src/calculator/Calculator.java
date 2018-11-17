@@ -1,6 +1,6 @@
 // TODO: add keyboard input
 // TODO: experiment increasing the font size on buttons and display
-// TODO: bug - if an expression evaluates to 0, new input is prepended with that 0
+// TODO: bug - starting a new expression with an operator, such as +3, -2, etc., causes problems during evaluation
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -318,7 +318,16 @@ public class Calculator extends JFrame {
         try {
             if (sb.length() > 0) {
                 String result = calcHandler.calculate(sb.toString());
-                printResult(result);
+                
+                /* Prevent new expressions from prepending a 0 after evaluating
+                an expression that results in 0. */
+                if (Integer.parseInt(result) != 0) {
+                    printResult(result);
+                }
+                
+                else {
+                    clearExpression();
+                }
             }
         }    
         
