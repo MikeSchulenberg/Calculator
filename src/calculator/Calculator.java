@@ -1,6 +1,7 @@
 // TODO: add keyboard input
 // TODO: experiment increasing the font size on buttons and display
 // TODO: bug - starting a new expression with an operator, such as +3, -2, etc., causes problems during evaluation
+// TODO: attempting to overflow the width of the main display resizes the program in an undesirable way
 
 /*
  * To change this license header, choose License Headers in Project Properties.
