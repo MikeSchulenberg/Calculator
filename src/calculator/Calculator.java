@@ -2,8 +2,7 @@
 // TODO: experiment increasing the font size on buttons and display
 // TODO: attempting to overflow the width of the main display resizes the program in an undesirable way
 // TODO: bug - entering whole numbers with 10 or more digits causes a "For input string: XXXXXXXXXX" Exception
-// TODO: change case of custom error messages to match case of messages from thrown Exceptions
-// TODO: look into centering error messages in the display
+// TODO: possibly use Backspace character on delete button
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -431,6 +430,6 @@ public class Calculator extends JFrame {
      */
     private void updateDisplay(String newText) {
         sb.setLength(0);       
-        display.setText(newText);
+        display.setText(newText.toUpperCase());
     }
 }
