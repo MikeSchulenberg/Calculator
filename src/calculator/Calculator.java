@@ -1,6 +1,9 @@
 // TODO: add keyboard input
 // TODO: experiment increasing the font size on buttons and display
 // TODO: attempting to overflow the width of the main display resizes the program in an undesirable way
+// TODO: bug - entering whole numbers with 10 or more digits causes a "For input string: XXXXXXXXXX" Exception
+// TODO: change case of custom error messages to match case of messages from thrown Exceptions
+// TODO: look into centering error messages in the display
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -91,7 +94,7 @@ public class Calculator extends JFrame {
         display = new JLabel("0");
         display.setOpaque(true);
         display.setBackground(Color.WHITE);
-        display.setBorder(BorderFactory.createLineBorder(new Color(180, 180, 180)));
+        display.setBorder(BorderFactory.createLineBorder(new Color(180, 180, 180)));       
         mainPanel.add(display, gbc);
     }
     
