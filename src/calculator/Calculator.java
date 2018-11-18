@@ -389,7 +389,7 @@ public class Calculator extends JFrame {
             
             // Prevent empty parenthetical subexpressions.
             else if (lastChar.equals("(") && newChar.equals(")")) {
-                sb.append("0");
+                sb.append("1");
             }
         }
         
