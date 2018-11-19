@@ -1,6 +1,5 @@
 // TODO: add keyboard input
 // TODO: experiment increasing the font size on buttons and display
-// TODO: attempting to overflow the width of the main display resizes the program in an undesirable way
 // TODO: possibly use Backspace character on delete button
 // TODO: experiment with light gray background color for main display
 // TODO: experiment with scientific notation for very large or very small numbers
@@ -94,7 +93,13 @@ public class Calculator extends JFrame {
         display = new JLabel("0");
         display.setOpaque(true);
         display.setBackground(Color.WHITE);
-        display.setBorder(BorderFactory.createLineBorder(new Color(180, 180, 180)));       
+        display.setBorder(BorderFactory.createLineBorder(new Color(180, 180, 180)));
+        
+        /* Prevent extremely long expressions from resizing the main display
+        and other UI components. */
+        Dimension d = display.getPreferredSize();
+        display.setPreferredSize(d);
+        
         mainPanel.add(display, gbc);
     }
     
