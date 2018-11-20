@@ -76,7 +76,7 @@ public class CalcHandler{
                 }
                 
                 catch (NumberFormatException e) {
-                    throw new Exception("INVALID DECIMAL POINT");
+                    throw new NumberFormatException(e.getMessage());
                 }
             }
             
@@ -164,7 +164,7 @@ public class CalcHandler{
             switch (Character.toString(operator)) {
                 case ValidOperators.DIVISION:
                     if (b == 0) {
-                        throw new Exception("DIVIDE BY 0 ERROR");
+                        throw new ArithmeticException("DIVIDE BY 0 ERROR");
                     }                   
                     return a / b;
                 case ValidOperators.MULTIPLICATION:
