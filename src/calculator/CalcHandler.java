@@ -27,20 +27,7 @@ public class CalcHandler{
      * by 0" error occurs, or when a bad decimal number is parsed.
      */
     public String calculate(String expr) throws Exception {              
-        try {
-            parseExpression(expr);
-        }
-        
-        catch (Exception e) {
-            String msg = e.getMessage();
-            if (msg == null) {
-                throw new Exception("SYNTAX ERROR");
-            }
-            
-            else {
-                throw new Exception(msg);
-            }            
-        }
+        parseExpression(expr);
         
         while (!OPERATORS.empty()) {
             evaluateSubexpression();
@@ -113,13 +100,7 @@ public class CalcHandler{
             subexpression it contains. */
             else if (currentChar == ')') {  
                 while (OPERATORS.peek() != '(') {                   
-                    try {
-                        evaluateSubexpression();
-                    }
-                    
-                    catch (Exception e) {
-                        throw new Exception(e.getMessage());
-                    }
+                    evaluateSubexpression();
                 }
                 
                 OPERATORS.pop();
@@ -144,13 +125,7 @@ public class CalcHandler{
             else if (ValidOperators.isOperator(Character.toString(currentChar))) {
                 while (!OPERATORS.empty() 
                         && checkPrecedence(OPERATORS.peek(), currentChar)) {
-                    try {
-                        evaluateSubexpression();
-                    }
-                    
-                    catch (Exception e) {
-                        throw new Exception(e.getMessage());
-                    }
+                    evaluateSubexpression();
                 }
                 
                 OPERATORS.push(currentChar);
@@ -171,14 +146,8 @@ public class CalcHandler{
         double b = VALUES.pop();
         double a = VALUES.pop();
 
-        try {
             double result = executeOperation(operator, a, b);
-            VALUES.push(result);
-        }
-
-        catch (Exception e) {
-            throw new Exception(e.getMessage());
-        }               
+            VALUES.push(result);             
     }
     
     /**
