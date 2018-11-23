@@ -16,10 +16,12 @@ import javax.swing.KeyStroke;
  * @author Mike Schulenberg
  */
 public class Keys {
+    Calculator calculator;
     JComponent component;
     
-    public Keys(JComponent component) {
-        this.component = component;
+    public Keys(Calculator calculator) {
+        this.calculator = calculator;
+        component = calculator.getMainPanel();
         prepKeyBindings();
     }
     
@@ -38,7 +40,7 @@ public class Keys {
         
         @Override
         public void actionPerformed(ActionEvent e) {
-            System.out.println(keyPressed);
+            calculator.processInput(keyPressed);
         }
     }
 }

@@ -45,7 +45,7 @@ public class Calculator extends JFrame {
     private void prepUI() {
         prepFrame();
         prepComponents();
-        new Keys(mainPanel);
+        new Keys(this);
         
         setVisible(true);
     }
@@ -270,25 +270,43 @@ public class Calculator extends JFrame {
     }
     
     /**
+     * Gets the main JPanel component.
+     * 
+     * @return The main JPanel component.
+     */
+    public JPanel getMainPanel() {
+        return mainPanel;
+    }
+    
+    /**
      * ActionListener for all buttons.
      */
     private class BListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            String clickedButtonText = e.getActionCommand();
-            switch (clickedButtonText) {
-                case "C" :
-                    clearExpression();
-                    break;
-                case DELETE_SYMBOL :
-                    deleteLastChar();
-                    break;
-                case "=" :
-                    evaluateExpression();
-                    break;
-                default :
-                    updateExpression(clickedButtonText);
-            }
+            processInput(e.getActionCommand());            
+        }
+    }
+    
+    /**
+     * Processes JButton and keyboard input to determine what action the program
+     * should take.
+     * 
+     * @param input Input from either a JButton or the keyboard.
+     */
+    public void processInput(String input) {
+        switch (input) {
+            case "C" :
+                clearExpression();
+                break;
+            case DELETE_SYMBOL :
+                deleteLastChar();
+                break;
+            case "=" :
+                evaluateExpression();
+                break;
+            default :
+                updateExpression(input);
         }
     }
     
