@@ -1,6 +1,5 @@
 // TODO: experiment increasing the font size on buttons and display
 // TODO: possibly use Backspace character on delete button
-// TODO: experiment with light gray background color for main display
 // TODO: experiment with scientific notation for very large or very small numbers
 
 /*
