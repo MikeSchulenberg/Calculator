@@ -45,6 +45,7 @@ public class Calculator extends JFrame {
     private void prepUI() {
         prepFrame();
         prepComponents();
+        new Keys(mainPanel);
         
         setVisible(true);
     }
