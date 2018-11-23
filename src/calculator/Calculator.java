@@ -27,7 +27,7 @@ public class Calculator extends JFrame {
     private JPanel mainPanel;
     private JLabel display;
 
-    private final String DELETE_SYMBOL = "\u00AB"; // « symbol
+    public static final String BACK_SPACE_SYMBOL = "\u00AB"; // « symbol
     
     public Calculator() {
         sb = new StringBuilder();
@@ -258,7 +258,7 @@ public class Calculator extends JFrame {
         
         gbc.gridx = 2;
         gbc.gridy = 5;
-        newButton = new JButton(DELETE_SYMBOL);
+        newButton = new JButton(BACK_SPACE_SYMBOL);
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
         
@@ -299,7 +299,7 @@ public class Calculator extends JFrame {
             case "C" :
                 clearExpression();
                 break;
-            case DELETE_SYMBOL :
+            case BACK_SPACE_SYMBOL :
                 deleteLastChar();
                 break;
             case "=" :
