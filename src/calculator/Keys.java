@@ -22,24 +22,44 @@ public class Keys {
     Calculator calculator;
     JComponent component;
     
+    /**
+     * Constructor requiring a Calculator object to receive commands and provide
+     * a component used for key bindings.
+     * 
+     * @param calculator A Calculator object.
+     */
     public Keys(Calculator calculator) {
         this.calculator = calculator;
         component = calculator.getMainPanel();
         prepKeyBindings();
     }
     
-    private void prepKeyBindings() {
-       // Prep number keys
+    /**
+     * Preps all key bindings.
+     */
+    private void prepKeyBindings() {       
+        prepNumberKeys();
+        prepOperatorKeys();
+        prepSupplementalKeys();
+    }
+    
+    /**
+     * Preps the number keys.
+     */
+    private void prepNumberKeys() {
         int numDigits = 10;
         for (int i = 0; i < numDigits; i++) {
             component.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT)
                     .put(KeyStroke.getKeyStroke((char) ('0' + i)), "key" + i);
             component.getActionMap()
                     .put("key" + i, new KeyAction(String.valueOf(i)));
-        }       
-        
-        // Prep operator keys
-        
+        }  
+    }
+    
+    /**
+     * Preps the operator keys.
+     */
+    private void prepOperatorKeys() {
         component.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT)
                     .put(KeyStroke.getKeyStroke('/'), "division");
         component.getActionMap()
@@ -59,9 +79,12 @@ public class Keys {
                     .put(KeyStroke.getKeyStroke('-'), "subtraction");
         component.getActionMap()
                     .put("subtraction", new KeyAction(ValidOperators.SUBTRACTION));
-        
-        // Prep the remaining keys
-        
+    }
+    
+    /**
+     * Preps the remaining keys.
+     */
+    private void prepSupplementalKeys() {
         component.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT)
                     .put(KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0), "clear");
         component.getActionMap()
@@ -83,18 +106,21 @@ public class Keys {
                     .put("decimal", new KeyAction("."));
         
         component.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT)
-                    .put(KeyStroke.getKeyStroke(KeyEvent.VK_BACK_SPACE, 0), "back");
+                    .put(KeyStroke.getKeyStroke(KeyEvent.VK_BACK_SPACE, 0), "backSpace");
         component.getActionMap()
-                    .put("back", new KeyAction(BACK_SPACE_SYMBOL));
+                    .put("backSpace", new KeyAction(BACK_SPACE_SYMBOL));
         
         component.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT)
-                    .put(KeyStroke.getKeyStroke('='), "evaluate");
+                    .put(KeyStroke.getKeyStroke('='), "equals");
         component.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT)
-                    .put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "evaluate");
+                    .put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "equals");
         component.getActionMap()
-                    .put("evaluate", new KeyAction("="));
+                    .put("equals", new KeyAction("="));
     }
     
+    /**
+     * Action that relays input to the calculator for processing.
+     */
     private class KeyAction extends AbstractAction {
         String keyPressed;
         

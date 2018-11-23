@@ -1,4 +1,3 @@
-// TODO: add keyboard input
 // TODO: experiment increasing the font size on buttons and display
 // TODO: possibly use Backspace character on delete button
 // TODO: experiment with light gray background color for main display
