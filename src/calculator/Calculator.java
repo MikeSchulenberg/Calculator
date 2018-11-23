@@ -93,6 +93,7 @@ public class Calculator extends JFrame {
         display.setOpaque(true);
         display.setBackground(Color.WHITE);
         display.setBorder(BorderFactory.createLineBorder(new Color(180, 180, 180)));
+        display.setFont(new Font("Tahoma", Font.PLAIN, 16));
         
         /* Prevent extremely long expressions from resizing the main display
         and other UI components. */
