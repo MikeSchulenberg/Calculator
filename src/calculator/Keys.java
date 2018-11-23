@@ -26,9 +26,16 @@ public class Keys {
     }
     
     private void prepKeyBindings() {
-        component.getInputMap().put(KeyStroke.getKeyStroke("1"), "pressed1");
-        component.getInputMap().put(KeyStroke.getKeyStroke("NUMPAD1"), "pressed1");
-        component.getActionMap().put("pressed1", new KeyAction("1"));
+       // Prep number keys
+        int numDigits = 10;
+        for (int i = 0; i < numDigits; i++) {
+            component.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT)
+                    .put(KeyStroke.getKeyStroke(String.valueOf(i)), "pressed" + i);
+            component.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT)
+                    .put(KeyStroke.getKeyStroke("NUMPAD" + i), "pressed" + i);
+            component.getActionMap()
+                    .put("pressed" + i, new KeyAction(String.valueOf(i)));
+        }       
     }
     
     private class KeyAction extends AbstractAction {
