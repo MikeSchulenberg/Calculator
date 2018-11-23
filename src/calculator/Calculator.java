@@ -1,6 +1,6 @@
-// TODO: experiment increasing the font size on buttons and display
 // TODO: possibly use Backspace character on delete button
 // TODO: experiment with scientific notation for very large or very small numbers
+// TODO: replace wild cards in import statements with specific files
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -53,8 +53,7 @@ public class Calculator extends JFrame {
      */
     private void prepFrame() {
         setTitle("Calculator");
-        final int FRAME_WIDTH = 250, FRAME_HEIGHT = 280;
-        setSize(FRAME_WIDTH, FRAME_HEIGHT);
+        setSize(250, 290);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
@@ -93,7 +92,7 @@ public class Calculator extends JFrame {
         display.setOpaque(true);
         display.setBackground(Color.WHITE);
         display.setBorder(BorderFactory.createLineBorder(new Color(180, 180, 180)));
-        display.setFont(new Font("Tahoma", Font.PLAIN, 16));
+        display.setFont(new Font("Arial", Font.PLAIN, 18));
         
         /* Prevent extremely long expressions from resizing the main display
         and other UI components. */
@@ -107,31 +106,31 @@ public class Calculator extends JFrame {
      * Builds a row of buttons and adds it to the UI.
      */
     private void prepRow2() {      
-        JButton newButton;
+        Button newButton;
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.HORIZONTAL;
         
         gbc.gridx = 0;
         gbc.gridy = 1;
-        newButton = new JButton("C");
+        newButton = new Button("C");
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
         
         gbc.gridx = 1;
         gbc.gridy = 1;
-        newButton = new JButton("(");
+        newButton = new Button("(");
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
         
         gbc.gridx = 2;
         gbc.gridy = 1;
-        newButton = new JButton(")");
+        newButton = new Button(")");
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
         
         gbc.gridx = 3;
         gbc.gridy = 1;      
-        newButton = new JButton(ValidOperators.DIVISION);
+        newButton = new Button(ValidOperators.DIVISION);
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
     }
@@ -140,31 +139,31 @@ public class Calculator extends JFrame {
      * Builds a row of buttons and adds it to the UI.
      */
     private void prepRow3() {      
-        JButton newButton;
+        Button newButton;
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.HORIZONTAL;
         
         gbc.gridx = 0;
         gbc.gridy = 2;
-        newButton = new JButton("7");
+        newButton = new Button("7");
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
         
         gbc.gridx = 1;
         gbc.gridy = 2;
-        newButton = new JButton("8");
+        newButton = new Button("8");
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
         
         gbc.gridx = 2;
         gbc.gridy = 2;
-        newButton = new JButton("9");
+        newButton = new Button("9");
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
         
         gbc.gridx = 3;
         gbc.gridy = 2;
-        newButton = new JButton(ValidOperators.MULTIPLICATION);
+        newButton = new Button(ValidOperators.MULTIPLICATION);
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
     }
@@ -173,31 +172,31 @@ public class Calculator extends JFrame {
      * Builds a row of buttons and adds it to the UI.
      */
     private void prepRow4() {
-        JButton newButton;
+        Button newButton;
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.HORIZONTAL;
         
         gbc.gridx = 0;
         gbc.gridy = 3;
-        newButton = new JButton("4");
+        newButton = new Button("4");
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
         
         gbc.gridx = 1;
         gbc.gridy = 3;
-        newButton = new JButton("5");
+        newButton = new Button("5");
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
         
         gbc.gridx = 2;
         gbc.gridy = 3;
-        newButton = new JButton("6");
+        newButton = new Button("6");
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
         
         gbc.gridx = 3;
         gbc.gridy = 3;
-        newButton = new JButton(ValidOperators.ADDITION);
+        newButton = new Button(ValidOperators.ADDITION);
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
     }
@@ -206,31 +205,31 @@ public class Calculator extends JFrame {
      * Builds a row of buttons and adds it to the UI.
      */
     private void prepRow5() {
-        JButton newButton;
+        Button newButton;
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.HORIZONTAL;
         
         gbc.gridx = 0;
         gbc.gridy = 4;
-        newButton = new JButton("1");
+        newButton = new Button("1");
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
         
         gbc.gridx = 1;
         gbc.gridy = 4;
-        newButton = new JButton("2");
+        newButton = new Button("2");
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
         
         gbc.gridx = 2;
         gbc.gridy = 4;
-        newButton = new JButton("3");
+        newButton = new Button("3");
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
         
         gbc.gridx = 3;
         gbc.gridy = 4;
-        newButton = new JButton(ValidOperators.SUBTRACTION);
+        newButton = new Button(ValidOperators.SUBTRACTION);
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
     }
@@ -239,31 +238,31 @@ public class Calculator extends JFrame {
      * Builds a row of buttons and adds it to the UI.
      */
     private void prepRow6() {
-        JButton newButton;
+        Button newButton;
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.HORIZONTAL;
         
         gbc.gridx = 0;
         gbc.gridy = 5;
-        newButton = new JButton("0");
+        newButton = new Button("0");
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
         
         gbc.gridx = 1;
         gbc.gridy = 5;
-        newButton = new JButton(".");
+        newButton = new Button(".");
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
         
         gbc.gridx = 2;
         gbc.gridy = 5;
-        newButton = new JButton(BACK_SPACE_SYMBOL);
+        newButton = new Button(BACK_SPACE_SYMBOL);
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
         
         gbc.gridx = 3;
         gbc.gridy = 5;
-        newButton = new JButton("=");
+        newButton = new Button("=");
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
     }
