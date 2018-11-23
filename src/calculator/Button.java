@@ -26,6 +26,6 @@ public class Button extends JButton{
     private void initButton() {
         setFont(new Font("Arial", Font.PLAIN, 18));
         setFocusPainted(false);
-        setPreferredSize(new Dimension(47, 30));
+        setPreferredSize(new Dimension(53, 30));
     }
 }

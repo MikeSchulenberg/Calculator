@@ -1,6 +1,7 @@
-// TODO: possibly use Backspace character on delete button
 // TODO: experiment with scientific notation for very large or very small numbers
 // TODO: replace wild cards in import statements with specific files
+// TODO: possibly rename CalcHandler class
+// TODO: finalize comments
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -25,7 +26,7 @@ public class Calculator extends JFrame {
     private JPanel mainPanel;
     private JLabel display;
 
-    public static final String BACK_SPACE_SYMBOL = "\u00AB"; // « symbol
+    public static final String BACK_SPACE_SYMBOL = "\u2190"; // ← symbol
     
     public Calculator() {
         sb = new StringBuilder();
@@ -53,7 +54,7 @@ public class Calculator extends JFrame {
      */
     private void prepFrame() {
         setTitle("Calculator");
-        setSize(250, 290);
+        setSize(280, 296);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
