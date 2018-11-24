@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package calculator;
 
 import java.awt.Dimension;
@@ -10,9 +11,10 @@ import java.awt.Font;
 import javax.swing.JButton;
 
 /**
- * This class adds additional default behavior to the calculator's JButtons.
+ * This class adds additional JButton behavior.
  * 
  * @author Mike Schulenberg
+ * @version 1.0.0
  */
 public class Button extends JButton{
     public Button(String text) {

@@ -5,6 +5,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package calculator;
 
 import java.awt.Color;
@@ -21,9 +22,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
- *  This class builds a GUI for a 4-function calculator.
+ *  This program is an arithmetic calculator that evaluates expressions 
+ * according to the rules of operator precedence.
+ * 
+ * This class builds the GUI.
  * 
  * @author Mike Schulenberg
+ * @version 1.0.0
  */
 public class Calculator extends JFrame {
     private StringBuilder sb;

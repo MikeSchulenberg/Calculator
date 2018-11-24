@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package calculator;
 
 import java.awt.event.ActionEvent;
@@ -14,9 +15,10 @@ import javax.swing.KeyStroke;
 import static calculator.Calculator.BACK_SPACE_SYMBOL;
 
 /**
- * This class sets up key bindings for the calculator.
+ * This class sets up all key bindings used by the program.
  * 
  * @author Mike Schulenberg
+ * @version 1.0.0
  */
 public class Keys {
     Calculator calculator;

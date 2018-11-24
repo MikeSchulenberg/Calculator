@@ -10,9 +10,10 @@ import java.text.DecimalFormat;
 import java.util.Stack;
 
 /**
- * This class evaluates expressions for Calculator.java.
+ * This class evaluates arithmetic expressions.
  * 
  * @author Mike Schulenberg
+ * @version 1.0.0
  */
 public class Evaluator{
     private final Stack<Double> VALUES = new Stack<>();

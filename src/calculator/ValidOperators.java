@@ -3,14 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package calculator;
 
 import java.util.HashSet;
 
 /**
- * This class represents the arithmetic operators used by the application.
+ * This class represents the arithmetic operators used by the program.
  * 
  * @author Mike Schulenberg
+ * @version 1.0.0
  */
 public class ValidOperators {
     public static final String DIVISION = "\u00F7";
