@@ -1,4 +1,3 @@
-// TODO: replace wild cards in import statements with specific files
 // TODO: possibly rename CalcHandler class
 // TODO: finalize comments
 
@@ -9,9 +8,18 @@
  */
 package calculator;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.BorderFactory;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /**
  *  This class builds a GUI for a 4-function calculator.
@@ -25,7 +33,7 @@ public class Calculator extends JFrame {
     private JPanel mainPanel;
     private JLabel display;
 
-    public static final String BACK_SPACE_SYMBOL = "\u2190"; // ← symbol
+    public static final String BACK_SPACE_SYMBOL = "\u2190"; // char: ←
     
     public Calculator() {
         sb = new StringBuilder();
@@ -113,7 +121,7 @@ public class Calculator extends JFrame {
         gbc.gridx = 0;
         gbc.gridy = 1;
         newButton = new Button("C");
-        newButton.addActionListener(new BListener());
+        newButton.addActionListener((ActionListener) new BListener());
         mainPanel.add(newButton, gbc);
         
         gbc.gridx = 1;
