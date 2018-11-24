@@ -1,4 +1,3 @@
-// TODO: experiment with scientific notation for very large or very small numbers
 // TODO: replace wild cards in import statements with specific files
 // TODO: possibly rename CalcHandler class
 // TODO: finalize comments
