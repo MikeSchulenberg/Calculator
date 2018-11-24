@@ -10,11 +10,11 @@ import java.text.DecimalFormat;
 import java.util.Stack;
 
 /**
- * This class provides all calculation functions for Calculator.java.
+ * This class evaluates expressions for Calculator.java.
  * 
  * @author Mike Schulenberg
  */
-public class CalcHandler{
+public class Evaluator{
     private final Stack<Double> VALUES = new Stack<>();
     private final Stack<Character> OPERATORS = new Stack<>();
     

@@ -1,4 +1,3 @@
-// TODO: possibly rename CalcHandler class
 // TODO: finalize comments
 
 /*
@@ -28,7 +27,7 @@ import javax.swing.JPanel;
  */
 public class Calculator extends JFrame {
     private StringBuilder sb;
-    private CalcHandler calcHandler;
+    private Evaluator evaluator;
     
     private JPanel mainPanel;
     private JLabel display;
@@ -37,7 +36,7 @@ public class Calculator extends JFrame {
     
     public Calculator() {
         sb = new StringBuilder();
-        calcHandler = new CalcHandler();
+        evaluator = new Evaluator();
         prepUI();
     }
     
@@ -350,7 +349,7 @@ public class Calculator extends JFrame {
     private void evaluateExpression() {
         try {
             if (sb.length() > 0) {
-                String result = calcHandler.calculate(sb.toString());               
+                String result = evaluator.calculate(sb.toString());               
                 
                 /* Prevent new expressions from prepending a 0 after evaluating
                 an expression that results in 0. */
