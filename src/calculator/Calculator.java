@@ -40,8 +40,8 @@ import javax.swing.JPanel;
  * @version 1.0.0
  */
 public class Calculator extends JFrame {
-    private StringBuilder sb;
-    private Evaluator evaluator;
+    private final StringBuilder SB;
+    private final Evaluator EVALUATOR;
     
     private JPanel mainPanel;
     private JLabel display;
@@ -49,8 +49,8 @@ public class Calculator extends JFrame {
     public static final String BACK_SPACE_SYMBOL = "\u2190"; // char: ←
     
     public Calculator() {
-        sb = new StringBuilder();
-        evaluator = new Evaluator();
+        SB = new StringBuilder();
+        EVALUATOR = new Evaluator();
         prepUI();
     }
     
@@ -335,7 +335,7 @@ public class Calculator extends JFrame {
      */
     private void clearExpression() {
         display.setText("0");
-        sb.setLength(0);
+        SB.setLength(0);
     }
     
     /**
@@ -345,14 +345,14 @@ public class Calculator extends JFrame {
     private void deleteLastChar() {
         /* If deleting the only character in the expression, clear the 
         StringBuilder instance and reset the display. */
-        if (sb.length() == 1) {
+        if (SB.length() == 1) {
             clearExpression();
         }
         
         /* Otherwise, delete the last character in the StringBuilder if it
         is not empty. */
-        else if (sb.length() > 1) {
-            sb.deleteCharAt(sb.length() - 1);
+        else if (SB.length() > 1) {
+            SB.deleteCharAt(SB.length() - 1);
             printExpression();
         }
     }
@@ -362,8 +362,8 @@ public class Calculator extends JFrame {
      */
     private void evaluateExpression() {
         try {
-            if (sb.length() > 0) {
-                String result = evaluator.calculate(sb.toString());               
+            if (SB.length() > 0) {
+                String result = EVALUATOR.calculate(SB.toString());               
                 
                 /* Prevent new expressions from prepending a 0 after evaluating
                 an expression that results in 0. */
@@ -398,15 +398,15 @@ public class Calculator extends JFrame {
     private void updateExpression(String newChar) {
         /* If the first character in a new expression if a decimal point or an
         operator, prepend the expression with a 0. */
-        if (sb.length() == 0) {
+        if (SB.length() == 0) {
             if (newChar.equals(".") || ValidOperators.isOperator(newChar)) {
-                    sb.append("0");
+                    SB.append("0");
             }
         }
 
         // Prevent the user from entering two operators in a row.
-        else if (sb.length() > 0) {
-            String lastChar = Character.toString(sb.charAt(sb.length() - 1));
+        else if (SB.length() > 0) {
+            String lastChar = Character.toString(SB.charAt(SB.length() - 1));
             
             /* If the last character in the StringBuilder instance is an
             operator, and the new String to be appended is also an operator,
@@ -422,7 +422,7 @@ public class Calculator extends JFrame {
             the new term with a 0. */
             else if (ValidOperators.isOperator(lastChar)
                     && newChar.equals(".")) {
-                sb.append("0");
+                SB.append("0");
             }
             
             // Prevent consecutive decimal points.
@@ -432,11 +432,11 @@ public class Calculator extends JFrame {
             
             // Prevent empty parenthetical subexpressions.
             else if (lastChar.equals("(") && newChar.equals(")")) {
-                sb.append("1");
+                SB.append("1");
             }
         }
         
-        sb.append(newChar);
+        SB.append(newChar);
         printExpression();
     }
     
@@ -444,7 +444,7 @@ public class Calculator extends JFrame {
      * Prints the current expression to the main display.
      */
     private void printExpression() {
-        display.setText(sb.toString());
+        display.setText(SB.toString());
     }
     
     /**
@@ -454,7 +454,7 @@ public class Calculator extends JFrame {
      */
     private void printResult(String result) {
         updateDisplay(result);
-        sb.append(result);
+        SB.append(result);
     }
     
     /**
@@ -473,7 +473,7 @@ public class Calculator extends JFrame {
      * @param newText The text to show in the display.
      */
     private void updateDisplay(String newText) {
-        sb.setLength(0);       
+        SB.setLength(0);       
         display.setText(newText.toUpperCase());
     }
 }
