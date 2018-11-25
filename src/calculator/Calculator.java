@@ -1,5 +1,3 @@
-// TODO: finalize comments
-
 /*
  * Copyright (C) 2018 Mike Schulenberg
  *

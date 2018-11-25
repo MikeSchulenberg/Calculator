@@ -55,8 +55,8 @@ public class Evaluator{
      * Parses the expression into a stack of integers and a stack of characters.
      * 
      * @param expr The expression to be evaluated.
-     * @throws Exception On attempts to divide a number by 0.
-     * @throws NumberFormatException When invalid decimal numbers are parsed.
+     * @throws Exception When parsing of an expression fails, when a "divide
+     * by 0" error occurs, or when a bad decimal number is parsed.
      */
     private void parseExpression(String expr) throws Exception {
         /* Parse the expression into a stack of integers and a stack of 
@@ -206,6 +206,7 @@ public class Evaluator{
             return false;
         }
         
+        // Does operator1 have precedence over operator2?
         if ((operator1.equals(ValidOperators.ADDITION) 
                 || operator1.equals(ValidOperators.SUBTRACTION))
                 && 
