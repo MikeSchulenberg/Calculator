@@ -356,6 +356,7 @@ public class Calculator extends JFrame {
     private void clearExpression() {
         display.setText("0");
         SB.setLength(0);
+        
         enableButtons(true);
     }
     
@@ -376,9 +377,7 @@ public class Calculator extends JFrame {
             SB.deleteCharAt(SB.length() - 1);
             printExpression();
             
-            if (!constrainExpression()) {
-                enableButtons(true);
-            }
+            enableButtons(true);
         }
     }
     
