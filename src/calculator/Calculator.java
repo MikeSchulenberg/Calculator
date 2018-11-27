@@ -47,7 +47,7 @@ public class Calculator extends JFrame {
     private JPanel mainPanel;
     private JLabel display;
     
-    private ArrayList<Button> toggleableButtons = new ArrayList<>();
+    private ArrayList<Button> numberPad = new ArrayList<>();
 
     public static final String BACK_SPACE_SYMBOL = "\u2190"; // char: ←
     
@@ -145,21 +145,21 @@ public class Calculator extends JFrame {
         newButton = new Button("(");
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
-        toggleableButtons.add(newButton);
+        numberPad.add(newButton);
         
         gbc.gridx = 2;
         gbc.gridy = 1;
         newButton = new Button(")");
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
-        toggleableButtons.add(newButton);
+        numberPad.add(newButton);
         
         gbc.gridx = 3;
         gbc.gridy = 1;      
         newButton = new Button(ValidOperators.DIVISION);
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
-        toggleableButtons.add(newButton);
+        numberPad.add(newButton);
     }
     
     /**
@@ -175,28 +175,28 @@ public class Calculator extends JFrame {
         newButton = new Button("7");
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
-        toggleableButtons.add(newButton);
+        numberPad.add(newButton);
         
         gbc.gridx = 1;
         gbc.gridy = 2;
         newButton = new Button("8");
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
-        toggleableButtons.add(newButton);
+        numberPad.add(newButton);
         
         gbc.gridx = 2;
         gbc.gridy = 2;
         newButton = new Button("9");
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
-        toggleableButtons.add(newButton);
+        numberPad.add(newButton);
         
         gbc.gridx = 3;
         gbc.gridy = 2;
         newButton = new Button(ValidOperators.MULTIPLICATION);
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
-        toggleableButtons.add(newButton);
+        numberPad.add(newButton);
     }
     
     /**
@@ -212,28 +212,28 @@ public class Calculator extends JFrame {
         newButton = new Button("4");
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
-        toggleableButtons.add(newButton);
+        numberPad.add(newButton);
         
         gbc.gridx = 1;
         gbc.gridy = 3;
         newButton = new Button("5");
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
-        toggleableButtons.add(newButton);
+        numberPad.add(newButton);
         
         gbc.gridx = 2;
         gbc.gridy = 3;
         newButton = new Button("6");
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
-        toggleableButtons.add(newButton);
+        numberPad.add(newButton);
         
         gbc.gridx = 3;
         gbc.gridy = 3;
         newButton = new Button(ValidOperators.ADDITION);
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
-        toggleableButtons.add(newButton);
+        numberPad.add(newButton);
     }
     
     /**
@@ -249,28 +249,28 @@ public class Calculator extends JFrame {
         newButton = new Button("1");
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
-        toggleableButtons.add(newButton);
+        numberPad.add(newButton);
         
         gbc.gridx = 1;
         gbc.gridy = 4;
         newButton = new Button("2");
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
-        toggleableButtons.add(newButton);
+        numberPad.add(newButton);
         
         gbc.gridx = 2;
         gbc.gridy = 4;
         newButton = new Button("3");
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
-        toggleableButtons.add(newButton);
+        numberPad.add(newButton);
         
         gbc.gridx = 3;
         gbc.gridy = 4;
         newButton = new Button(ValidOperators.SUBTRACTION);
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
-        toggleableButtons.add(newButton);
+        numberPad.add(newButton);
     }
     
     /**
@@ -286,14 +286,14 @@ public class Calculator extends JFrame {
         newButton = new Button("0");
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
-        toggleableButtons.add(newButton);
+        numberPad.add(newButton);
         
         gbc.gridx = 1;
         gbc.gridy = 5;
         newButton = new Button(".");
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
-        toggleableButtons.add(newButton);
+        numberPad.add(newButton);
         
         gbc.gridx = 2;
         gbc.gridy = 5;
@@ -357,7 +357,7 @@ public class Calculator extends JFrame {
         display.setText("0");
         SB.setLength(0);
         
-        enableButtons(true);
+        enableNumberPad(true);
     }
     
     /**
@@ -377,7 +377,7 @@ public class Calculator extends JFrame {
             SB.deleteCharAt(SB.length() - 1);
             printExpression();
             
-            enableButtons(true);
+            enableNumberPad(true);
         }
     }
     
@@ -420,19 +420,25 @@ public class Calculator extends JFrame {
      * expression.
      */
     private void updateExpression(String newChar) {
-        doExpressionUpdate(newChar);
+        parseNewChar(newChar);
         
-        if (constrainExpression()) {
-            enableButtons(false);
+        SB.append(newChar);
+        printExpression();
+        
+        /* If the current expression has reached its maxiumum allowed length,
+        disable the number pad. */
+        if (checkExpressionWidth()) {
+            enableNumberPad(false);
         }
     }
 
     /**
-     * TODO: write comment
+     * Determines if the current expression needs to be modified before 
+     * appending it with a new character, then makes those modifications.
      * 
-     * @param newChar 
+     * @param newChar The character, as a String, to be parsed.
      */
-    private void doExpressionUpdate(String newChar) {
+    private void parseNewChar(String newChar) {
         /* If the first character in a new expression if a decimal point or an
         operator, prepend the expression with a 0. */
         if (SB.length() == 0) {
@@ -471,18 +477,17 @@ public class Calculator extends JFrame {
             else if (lastChar.equals("(") && newChar.equals(")")) {
                 SB.append("1");
             }
-        }
-        
-        SB.append(newChar);
-        printExpression();
+        }  
     }
     
     /**
-     * TODO: write comment
+     * Determines if the current expression has reached its maximum allowed
+     * width and should be prevented from having new characters appended to it.
      * 
-     * @return 
+     * @return True if the current expression has reached its maximum allowed
+     * width; false otherwise.
      */
-    private boolean constrainExpression() {
+    private boolean checkExpressionWidth() {
         int preferredWidth = display.getUI().getPreferredSize(display).width;
         int preferredWidthIncrement = 10;
         int actualWidth = display.getWidth();
@@ -491,21 +496,22 @@ public class Calculator extends JFrame {
     }
     
     /**
-     * TODO: write comment
+     * Toggles the enabled/disabled state of the number pad.
      * 
-     * @param setEnable 
+     * @param setEnable True if the number pad should be enabled; false if it
+     * should be disabled.
      */
-    private void enableButtons(boolean setEnable) {
-        boolean alreadyEnabled = toggleableButtons.get(0).isEnabled();
+    private void enableNumberPad(boolean setEnable) {
+        boolean alreadyEnabled = numberPad.get(0).isEnabled();
         
         if (setEnable && !alreadyEnabled) {
-            toggleableButtons.forEach((current) -> {
+            numberPad.forEach((current) -> {
                 current.setEnabled(true);
             });
         }
         
         else if (!setEnable && alreadyEnabled) {
-            toggleableButtons.forEach((current) -> {
+            numberPad.forEach((current) -> {
                 current.setEnabled(false);
             });
         }
