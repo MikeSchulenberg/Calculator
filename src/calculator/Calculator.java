@@ -25,6 +25,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -45,6 +46,8 @@ public class Calculator extends JFrame {
     
     private JPanel mainPanel;
     private JLabel display;
+    
+    private ArrayList<Button> toggleableButtons = new ArrayList<>();
 
     public static final String BACK_SPACE_SYMBOL = "\u2190"; // char: ←
     
@@ -142,18 +145,21 @@ public class Calculator extends JFrame {
         newButton = new Button("(");
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
+        toggleableButtons.add(newButton);
         
         gbc.gridx = 2;
         gbc.gridy = 1;
         newButton = new Button(")");
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
+        toggleableButtons.add(newButton);
         
         gbc.gridx = 3;
         gbc.gridy = 1;      
         newButton = new Button(ValidOperators.DIVISION);
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
+        toggleableButtons.add(newButton);
     }
     
     /**
@@ -169,24 +175,28 @@ public class Calculator extends JFrame {
         newButton = new Button("7");
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
+        toggleableButtons.add(newButton);
         
         gbc.gridx = 1;
         gbc.gridy = 2;
         newButton = new Button("8");
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
+        toggleableButtons.add(newButton);
         
         gbc.gridx = 2;
         gbc.gridy = 2;
         newButton = new Button("9");
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
+        toggleableButtons.add(newButton);
         
         gbc.gridx = 3;
         gbc.gridy = 2;
         newButton = new Button(ValidOperators.MULTIPLICATION);
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
+        toggleableButtons.add(newButton);
     }
     
     /**
@@ -202,24 +212,28 @@ public class Calculator extends JFrame {
         newButton = new Button("4");
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
+        toggleableButtons.add(newButton);
         
         gbc.gridx = 1;
         gbc.gridy = 3;
         newButton = new Button("5");
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
+        toggleableButtons.add(newButton);
         
         gbc.gridx = 2;
         gbc.gridy = 3;
         newButton = new Button("6");
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
+        toggleableButtons.add(newButton);
         
         gbc.gridx = 3;
         gbc.gridy = 3;
         newButton = new Button(ValidOperators.ADDITION);
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
+        toggleableButtons.add(newButton);
     }
     
     /**
@@ -235,24 +249,28 @@ public class Calculator extends JFrame {
         newButton = new Button("1");
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
+        toggleableButtons.add(newButton);
         
         gbc.gridx = 1;
         gbc.gridy = 4;
         newButton = new Button("2");
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
+        toggleableButtons.add(newButton);
         
         gbc.gridx = 2;
         gbc.gridy = 4;
         newButton = new Button("3");
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
+        toggleableButtons.add(newButton);
         
         gbc.gridx = 3;
         gbc.gridy = 4;
         newButton = new Button(ValidOperators.SUBTRACTION);
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
+        toggleableButtons.add(newButton);
     }
     
     /**
@@ -268,12 +286,14 @@ public class Calculator extends JFrame {
         newButton = new Button("0");
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
+        toggleableButtons.add(newButton);
         
         gbc.gridx = 1;
         gbc.gridy = 5;
         newButton = new Button(".");
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
+        toggleableButtons.add(newButton);
         
         gbc.gridx = 2;
         gbc.gridy = 5;
@@ -336,6 +356,7 @@ public class Calculator extends JFrame {
     private void clearExpression() {
         display.setText("0");
         SB.setLength(0);
+        enableButtons(true);
     }
     
     /**
@@ -354,6 +375,10 @@ public class Calculator extends JFrame {
         else if (SB.length() > 1) {
             SB.deleteCharAt(SB.length() - 1);
             printExpression();
+            
+            if (!constrainExpression()) {
+                enableButtons(true);
+            }
         }
     }
     
@@ -396,6 +421,19 @@ public class Calculator extends JFrame {
      * expression.
      */
     private void updateExpression(String newChar) {
+        doExpressionUpdate(newChar);
+        
+        if (constrainExpression()) {
+            enableButtons(false);
+        }
+    }
+
+    /**
+     * TODO: write comment
+     * 
+     * @param newChar 
+     */
+    private void doExpressionUpdate(String newChar) {
         /* If the first character in a new expression if a decimal point or an
         operator, prepend the expression with a 0. */
         if (SB.length() == 0) {
@@ -438,6 +476,40 @@ public class Calculator extends JFrame {
         
         SB.append(newChar);
         printExpression();
+    }
+    
+    /**
+     * TODO: write comment
+     * 
+     * @return 
+     */
+    private boolean constrainExpression() {
+        int preferredWidth = display.getUI().getPreferredSize(display).width;
+        int preferredWidthIncrement = 10;
+        int actualWidth = display.getWidth();
+       
+        return preferredWidth > actualWidth - preferredWidthIncrement;
+    }
+    
+    /**
+     * TODO: write comment
+     * 
+     * @param setEnable 
+     */
+    private void enableButtons(boolean setEnable) {
+        boolean alreadyEnabled = toggleableButtons.get(0).isEnabled();
+        
+        if (setEnable && !alreadyEnabled) {
+            toggleableButtons.forEach((current) -> {
+                current.setEnabled(true);
+            });
+        }
+        
+        else if (!setEnable && alreadyEnabled) {
+            toggleableButtons.forEach((current) -> {
+                current.setEnabled(false);
+            });
+        }
     }
     
     /**
