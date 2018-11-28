@@ -43,17 +43,17 @@ import javax.swing.JPanel;
 public class Calculator extends JFrame {
     private final StringBuilder SB;
     private final Evaluator EVALUATOR;
+    private final ArrayList<Button> NUMBER_PAD;
     
     private JPanel mainPanel;
     private JLabel display;
-    
-    private ArrayList<Button> numberPad = new ArrayList<>();
 
     public static final String BACK_SPACE_SYMBOL = "\u2190"; // char: ←
     
     public Calculator() {
         SB = new StringBuilder();
         EVALUATOR = new Evaluator();
+        NUMBER_PAD = new ArrayList<>();
         prepUI();
     }
     
@@ -145,21 +145,21 @@ public class Calculator extends JFrame {
         newButton = new Button("(");
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
-        numberPad.add(newButton);
+        NUMBER_PAD.add(newButton);
         
         gbc.gridx = 2;
         gbc.gridy = 1;
         newButton = new Button(")");
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
-        numberPad.add(newButton);
+        NUMBER_PAD.add(newButton);
         
         gbc.gridx = 3;
         gbc.gridy = 1;      
         newButton = new Button(ValidOperators.DIVISION);
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
-        numberPad.add(newButton);
+        NUMBER_PAD.add(newButton);
     }
     
     /**
@@ -175,28 +175,28 @@ public class Calculator extends JFrame {
         newButton = new Button("7");
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
-        numberPad.add(newButton);
+        NUMBER_PAD.add(newButton);
         
         gbc.gridx = 1;
         gbc.gridy = 2;
         newButton = new Button("8");
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
-        numberPad.add(newButton);
+        NUMBER_PAD.add(newButton);
         
         gbc.gridx = 2;
         gbc.gridy = 2;
         newButton = new Button("9");
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
-        numberPad.add(newButton);
+        NUMBER_PAD.add(newButton);
         
         gbc.gridx = 3;
         gbc.gridy = 2;
         newButton = new Button(ValidOperators.MULTIPLICATION);
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
-        numberPad.add(newButton);
+        NUMBER_PAD.add(newButton);
     }
     
     /**
@@ -212,28 +212,28 @@ public class Calculator extends JFrame {
         newButton = new Button("4");
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
-        numberPad.add(newButton);
+        NUMBER_PAD.add(newButton);
         
         gbc.gridx = 1;
         gbc.gridy = 3;
         newButton = new Button("5");
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
-        numberPad.add(newButton);
+        NUMBER_PAD.add(newButton);
         
         gbc.gridx = 2;
         gbc.gridy = 3;
         newButton = new Button("6");
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
-        numberPad.add(newButton);
+        NUMBER_PAD.add(newButton);
         
         gbc.gridx = 3;
         gbc.gridy = 3;
         newButton = new Button(ValidOperators.ADDITION);
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
-        numberPad.add(newButton);
+        NUMBER_PAD.add(newButton);
     }
     
     /**
@@ -249,28 +249,28 @@ public class Calculator extends JFrame {
         newButton = new Button("1");
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
-        numberPad.add(newButton);
+        NUMBER_PAD.add(newButton);
         
         gbc.gridx = 1;
         gbc.gridy = 4;
         newButton = new Button("2");
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
-        numberPad.add(newButton);
+        NUMBER_PAD.add(newButton);
         
         gbc.gridx = 2;
         gbc.gridy = 4;
         newButton = new Button("3");
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
-        numberPad.add(newButton);
+        NUMBER_PAD.add(newButton);
         
         gbc.gridx = 3;
         gbc.gridy = 4;
         newButton = new Button(ValidOperators.SUBTRACTION);
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
-        numberPad.add(newButton);
+        NUMBER_PAD.add(newButton);
     }
     
     /**
@@ -286,14 +286,14 @@ public class Calculator extends JFrame {
         newButton = new Button("0");
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
-        numberPad.add(newButton);
+        NUMBER_PAD.add(newButton);
         
         gbc.gridx = 1;
         gbc.gridy = 5;
         newButton = new Button(".");
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
-        numberPad.add(newButton);
+        NUMBER_PAD.add(newButton);
         
         gbc.gridx = 2;
         gbc.gridy = 5;
@@ -502,16 +502,16 @@ public class Calculator extends JFrame {
      * should be disabled.
      */
     private void enableNumberPad(boolean setEnable) {
-        boolean alreadyEnabled = numberPad.get(0).isEnabled();
+        boolean alreadyEnabled = NUMBER_PAD.get(0).isEnabled();
         
         if (setEnable && !alreadyEnabled) {
-            numberPad.forEach((current) -> {
+            NUMBER_PAD.forEach((current) -> {
                 current.setEnabled(true);
             });
         }
         
         else if (!setEnable && alreadyEnabled) {
-            numberPad.forEach((current) -> {
+            NUMBER_PAD.forEach((current) -> {
                 current.setEnabled(false);
             });
         }
