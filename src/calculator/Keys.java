@@ -34,16 +34,19 @@ import static calculator.Calculator.BACK_SPACE_SYMBOL;
 public class Keys {
     Calculator calculator;
     JComponent component;
+    InputHandler inputHandler;
     
     /**
      * Constructor requiring a Calculator object to receive commands and provide
      * a component used for key bindings.
      * 
      * @param calculator A Calculator object.
+     * @param inputHandler
      */
-    public Keys(Calculator calculator) {
+    public Keys(Calculator calculator, InputHandler inputHandler) {
         this.calculator = calculator;
         component = calculator.getMainPanel();
+        this.inputHandler = inputHandler;
         prepKeyBindings();
     }
     
@@ -143,7 +146,7 @@ public class Keys {
         
         @Override
         public void actionPerformed(ActionEvent e) {
-            calculator.processInput(keyPressed);
+            inputHandler.processInput(keyPressed);
         }
     }
 }
