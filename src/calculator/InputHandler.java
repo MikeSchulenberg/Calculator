@@ -20,7 +20,7 @@ package calculator;
 import java.util.ArrayList;
 import javax.swing.JLabel;
 
-import static calculator.Calculator.BACK_SPACE_SYMBOL;
+import static calculator.Calculator.BACKSPACE_SYMBOL;
 
 /**
  * This class manages the user input for the program.
@@ -53,7 +53,7 @@ public class InputHandler {
             case "C" :
                 clearExpression();
                 break;
-            case BACK_SPACE_SYMBOL :
+            case BACKSPACE_SYMBOL :
                 deleteLastChar();
                 break;
             case "=" :

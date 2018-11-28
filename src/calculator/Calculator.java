@@ -47,7 +47,7 @@ public class Calculator extends JFrame {
     private JPanel mainPanel;
     private JLabel display;
 
-    public static final String BACK_SPACE_SYMBOL = "\u2190"; // char: ←
+    public static final String BACKSPACE_SYMBOL = "\u2190"; // char: ←
     
     public Calculator() {       
         NUMBER_PAD = new ArrayList<>();        
@@ -295,7 +295,7 @@ public class Calculator extends JFrame {
         
         gbc.gridx = 2;
         gbc.gridy = 5;
-        newButton = new Button(BACK_SPACE_SYMBOL);
+        newButton = new Button(BACKSPACE_SYMBOL);
         newButton.addActionListener(new BListener());
         mainPanel.add(newButton, gbc);
         

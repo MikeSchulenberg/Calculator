@@ -23,7 +23,7 @@ import javax.swing.AbstractAction;
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 
-import static calculator.Calculator.BACK_SPACE_SYMBOL;
+import static calculator.Calculator.BACKSPACE_SYMBOL;
 
 /**
  * This class sets up all key bindings used by the program.
@@ -38,10 +38,11 @@ public class KeyBindings {
     
     /**
      * Constructor requiring a Calculator object to receive commands and provide
-     * a component used for key bindings.
+     * a component used for key bindings. Also requires an InputHandler object
+     * to pass input into.
      * 
      * @param calculator A Calculator object.
-     * @param inputHandler
+     * @param inputHandler An InputHandler object.
      */
     public KeyBindings(Calculator calculator, InputHandler inputHandler) {
         this.calculator = calculator;
@@ -124,7 +125,7 @@ public class KeyBindings {
         component.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT)
                     .put(KeyStroke.getKeyStroke(KeyEvent.VK_BACK_SPACE, 0), "backSpace");
         component.getActionMap()
-                    .put("backSpace", new KeyAction(BACK_SPACE_SYMBOL));
+                    .put("backSpace", new KeyAction(BACKSPACE_SYMBOL));
         
         component.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT)
                     .put(KeyStroke.getKeyStroke('='), "equals");
