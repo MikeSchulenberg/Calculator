@@ -53,7 +53,7 @@ public class Calculator extends JFrame {
         NUMBER_PAD = new ArrayList<>();        
         prepUI();  
         INPUT_HANDLER = new InputHandler(display, NUMBER_PAD);
-        new Keys(this, INPUT_HANDLER);
+        new KeyBindings(this, INPUT_HANDLER);
     }
     
     public static void main(String[] args) {

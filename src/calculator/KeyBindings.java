@@ -31,7 +31,7 @@ import static calculator.Calculator.BACK_SPACE_SYMBOL;
  * @author Mike Schulenberg
  * @version 1.0.0
  */
-public class Keys {
+public class KeyBindings {
     Calculator calculator;
     JComponent component;
     InputHandler inputHandler;
@@ -43,7 +43,7 @@ public class Keys {
      * @param calculator A Calculator object.
      * @param inputHandler
      */
-    public Keys(Calculator calculator, InputHandler inputHandler) {
+    public KeyBindings(Calculator calculator, InputHandler inputHandler) {
         this.calculator = calculator;
         component = calculator.getMainPanel();
         this.inputHandler = inputHandler;
