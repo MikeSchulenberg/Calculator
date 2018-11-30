@@ -17,7 +17,7 @@
 
 package calculator;
 
-import java.text.DecimalFormat;
+import java.math.BigDecimal;
 import java.util.Stack;
 
 /**
@@ -27,7 +27,7 @@ import java.util.Stack;
  * @version 1.0.0
  */
 public class Evaluator{
-    private final Stack<Double> VALUES = new Stack<>();
+    private final Stack<BigDecimal> VALUES = new Stack<>();
     private final Stack<Character> OPERATORS = new Stack<>();
     
     /**
@@ -45,10 +45,9 @@ public class Evaluator{
             evaluateSubexpression();
         }
         
-        double result = VALUES.pop();
-        DecimalFormat df = new DecimalFormat("0.###");
+        BigDecimal result = VALUES.pop();
         
-        return df.format(result);
+        return result.toString();
     }
     
     /**
@@ -84,7 +83,7 @@ public class Evaluator{
                 }
                 
                 try {
-                    VALUES.push(Double.parseDouble(currentNum));
+                    VALUES.push(new BigDecimal(currentNum));
                 }
                 
                 catch (NumberFormatException e) {
@@ -155,10 +154,10 @@ public class Evaluator{
         char operator = OPERATORS.pop();
 
         // Get the two operands in the correct order
-        double b = VALUES.pop();
-        double a = VALUES.pop();
+        BigDecimal b = VALUES.pop();
+        BigDecimal a = VALUES.pop();
 
-            double result = executeOperation(operator, a, b);
+            BigDecimal result = executeOperation(operator, a, b);
             VALUES.push(result);             
     }
     
@@ -171,22 +170,22 @@ public class Evaluator{
      * @return The result of the operation.
      * @throws Exception On attempts to divide a number by 0.
      */ 
-    private double executeOperation(char operator, double a, double b) 
+    private BigDecimal executeOperation(char operator, BigDecimal a, BigDecimal b) 
         throws Exception {
             switch (Character.toString(operator)) {
                 case ValidOperators.DIVISION:
-                    if (b == 0) {
+                    if (b.equals(0)) {
                         throw new ArithmeticException("DIVIDE BY 0 ERROR");
                     }                   
-                    return a / b;
+                    return a.divide(b, 5, BigDecimal.ROUND_HALF_UP);
                 case ValidOperators.MULTIPLICATION:
-                    return a * b;
+                    return a.multiply(b);
                 case ValidOperators.ADDITION:
-                    return a + b;
+                    return a.add(b);
                 case ValidOperators.SUBTRACTION:
-                    return a - b;
+                    return a.subtract(b);
                 default:
-                    return 0;
+                    return new BigDecimal(0);
             }
     }
     

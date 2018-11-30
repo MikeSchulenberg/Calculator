@@ -256,6 +256,7 @@ public class InputHandler {
      */
     private void printMessage(String msg) {
         updateDisplay(msg);
+        System.out.println(msg);
     }
     
     /**
