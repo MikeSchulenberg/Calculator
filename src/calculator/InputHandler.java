@@ -108,6 +108,12 @@ public class InputHandler {
                 an expression that results in 0. */
                 if (Double.parseDouble(result) != 0) {
                     printResult(result);
+                    
+                    /* If the new expression has room for additional characters,
+                    make sure the number pad is enabled. */
+                    if (!checkExpressionWidth()) {
+                        enableNumberPad(true);
+                    }
                 }
                 
                 else {
