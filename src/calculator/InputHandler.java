@@ -111,7 +111,7 @@ public class InputHandler {
                     
                     /* If the new expression has room for additional characters,
                     make sure the number pad is enabled. */
-                    if (!checkExpressionWidth()) {
+                    if (!isExpressionFull()) {
                         enableNumberPad(true);
                     }
                 }
@@ -148,7 +148,7 @@ public class InputHandler {
         
         /* If the current expression has reached its maxiumum allowed length,
         disable the number pad. */
-        if (checkExpressionWidth()) {
+        if (isExpressionFull()) {
             enableNumberPad(false);
         }
     }
@@ -208,7 +208,7 @@ public class InputHandler {
      * @return True if the current expression has reached its maximum allowed
      * width; false otherwise.
      */
-    private boolean checkExpressionWidth() {
+    private boolean isExpressionFull() {
         int preferredWidth = DISPLAY.getUI().getPreferredSize(DISPLAY).width;
         int preferredWidthIncrement = 10;
         int actualWidth = DISPLAY.getWidth();
