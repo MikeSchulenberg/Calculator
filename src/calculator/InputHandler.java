@@ -92,7 +92,11 @@ public class InputHandler {
             SB.deleteCharAt(SB.length() - 1);
             printExpression();
             
-            enableNumberPad(true);
+            /* If the current expression has room for additional 
+            characters, make sure the number pad is enabled. */
+            if (!isExpressionFull()) {
+                enableNumberPad(true);
+            }
         }
     }
     
@@ -109,8 +113,8 @@ public class InputHandler {
                 if (Double.parseDouble(result) != 0) {
                     printResult(result);
                     
-                    /* If the new expression has room for additional characters,
-                    make sure the number pad is enabled. */
+                    /* If the current expression has room for additional 
+                    characters, make sure the number pad is enabled. */
                     if (!isExpressionFull()) {
                         enableNumberPad(true);
                     }
