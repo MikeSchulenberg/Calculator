@@ -35,6 +35,14 @@ public class InputHandler {
     
     private final JLabel DISPLAY;
     
+    /* When checking the preferred width of the display showing the current 
+    expression against its actual width, sometimes we need to know if it's
+    greater-than-or-equal-to. Other times we need to know if it's 
+    greater-than. */
+    private enum WidthCheckMode {
+        GREATER_THAN_OR_EQUAL_TO, GREATER_THAN
+    }
+    
     public InputHandler(JLabel display, ArrayList numberPad) {
         SB = new StringBuilder();
         EVALUATOR = new Evaluator();
@@ -94,7 +102,7 @@ public class InputHandler {
             
             /* If the current expression has room for additional 
             characters, make sure the number pad is enabled. */
-            if (!isExpressionFull()) {
+            if (!isExpressionFull(WidthCheckMode.GREATER_THAN_OR_EQUAL_TO)) {
                 enableNumberPad(true);
             }
         }
@@ -115,7 +123,7 @@ public class InputHandler {
                     
                     /* If the current expression has room for additional 
                     characters, make sure the number pad is enabled. */
-                    if (!isExpressionFull()) {
+                    if (!isExpressionFull(WidthCheckMode.GREATER_THAN_OR_EQUAL_TO)) {
                         enableNumberPad(true);
                     }
                 }
@@ -152,7 +160,7 @@ public class InputHandler {
         
         /* If the current expression has reached its maxiumum allowed length,
         disable the number pad. */
-        if (isExpressionFull()) {
+        if (isExpressionFull(WidthCheckMode.GREATER_THAN_OR_EQUAL_TO)) {
             enableNumberPad(false);
         }
     }
@@ -209,15 +217,25 @@ public class InputHandler {
      * Determines if the current expression has reached its maximum allowed
      * width and should be prevented from having new characters appended to it.
      * 
+     * @param checkMode An enum that indicates whether true should be returned
+     * if the main display's preferred width is greater-than-or-equal-to its
+     * actual width, or if the main display's preferred width is greater-than
+     * its actual width.
      * @return True if the current expression has reached its maximum allowed
      * width; false otherwise.
      */
-    private boolean isExpressionFull() {
+    private boolean isExpressionFull(WidthCheckMode checkMode) {
         int preferredWidth = DISPLAY.getUI().getPreferredSize(DISPLAY).width;
         int preferredWidthIncrement = 10;
         int actualWidth = DISPLAY.getWidth();
+        
+        if (checkMode == WidthCheckMode.GREATER_THAN_OR_EQUAL_TO) {
+            return preferredWidth > actualWidth - preferredWidthIncrement;
+        }
        
-        return preferredWidth > actualWidth - preferredWidthIncrement;
+        else {
+            return preferredWidth > actualWidth;
+        }
     }
     
     /**
