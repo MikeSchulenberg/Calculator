@@ -81,6 +81,7 @@ public class InputHandler {
         SB.setLength(0);
         
         enableNumberPad(true);
+        DISPLAY.setToolTipText(null);
     }
     
     /**
@@ -104,6 +105,17 @@ public class InputHandler {
             characters, make sure the number pad is enabled. */
             if (!isExpressionFull(WidthCheckMode.GREATER_THAN_OR_EQUAL_TO)) {
                 enableNumberPad(true);
+            }
+            
+            /* If the current expression does not overflow the main display,
+            remove the tool tip that shows the complete expression. */
+            if (!isExpressionFull(WidthCheckMode.GREATER_THAN)) {
+                DISPLAY.setToolTipText(null);
+            }
+            
+            /* Otherwise, update the tooltip with the modified expression. */
+            else {
+                DISPLAY.setToolTipText(SB.toString());
             }
         }
     }
@@ -275,6 +287,16 @@ public class InputHandler {
     private void printResult(String result) {
         updateDisplay(result);
         SB.append(result);
+        
+        /* If the result overflows the width of the main display, enable a tool
+        tip that shows the entire result. */
+        if (isExpressionFull(WidthCheckMode.GREATER_THAN)) {
+            DISPLAY.setToolTipText(result);
+        }
+        
+        else {
+            DISPLAY.setToolTipText(null);
+        }
     }
     
     /**
