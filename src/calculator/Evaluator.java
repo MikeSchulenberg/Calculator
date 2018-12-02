@@ -177,7 +177,7 @@ public class Evaluator{
                     if (b.equals(0)) {
                         throw new ArithmeticException("DIVIDE BY 0 ERROR");
                     }                   
-                    return a.divide(b, 5, BigDecimal.ROUND_HALF_UP);
+                    return a.divide(b, 5, BigDecimal.ROUND_HALF_UP).stripTrailingZeros();
                 case ValidOperators.MULTIPLICATION:
                     return a.multiply(b);
                 case ValidOperators.ADDITION:
