@@ -43,7 +43,7 @@ public class InputHandler {
         GREATER_THAN_OR_EQUAL_TO, GREATER_THAN
     }
     
-    public InputHandler(JLabel display, ArrayList numberPad) {
+    public InputHandler(JLabel display, ArrayList<Button> numberPad) {
         SB = new StringBuilder();
         EVALUATOR = new Evaluator();
         DISPLAY = display;
