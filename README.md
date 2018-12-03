@@ -30,3 +30,5 @@ The backspace button, denoted by a left-pointing arrow, deletes the last digit o
 The equals button causes the expression to be evaluated, and the result is shown in the display.
 
 The program accepts keyboard input.
+
+![alt text](https://github.com/MikeSchulenberg/Calculator/blob/master/Calculator-img.JPG)
