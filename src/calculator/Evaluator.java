@@ -83,7 +83,7 @@ public class Evaluator{
                 }
                 
                 try {
-                    VALUES.push(new BigDecimal(currentNum));
+                    VALUES.push(new BigDecimal(currentNum).stripTrailingZeros());
                 }
                 
                 catch (NumberFormatException e) {
