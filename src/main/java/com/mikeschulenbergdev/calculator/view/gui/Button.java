@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Mike Schulenberg
+ * Copyright (C) 2018, 2019 Mike Schulenberg
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package calculator;
+package com.mikeschulenbergdev.calculator.view.gui;
 
 import java.awt.Dimension;
 import java.awt.Font;
@@ -28,7 +28,8 @@ import javax.swing.JButton;
  * @version 1.0.0
  */
 public class Button extends JButton{
-    public Button(String text) {
+
+	public Button(String text) {
         super(text);
         initButton();
     }
@@ -41,4 +42,5 @@ public class Button extends JButton{
         setFocusPainted(false);
         setPreferredSize(new Dimension(53, 30));
     }
+    
 }

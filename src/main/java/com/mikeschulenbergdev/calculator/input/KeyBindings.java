@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Mike Schulenberg
+ * Copyright (C) 2018-2019 Mike Schulenberg
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,15 +15,19 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package calculator;
+package com.mikeschulenbergdev.calculator.input;
+
+import static com.mikeschulenbergdev.calculator.view.View.BACKSPACE_SYMBOL;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+
 import javax.swing.AbstractAction;
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 
-import static calculator.Calculator.BACKSPACE_SYMBOL;
+import com.mikeschulenbergdev.calculator.core.ValidOperators;
+import com.mikeschulenbergdev.calculator.view.View;
 
 /**
  * This class sets up all key bindings used by the program.
@@ -32,7 +36,8 @@ import static calculator.Calculator.BACKSPACE_SYMBOL;
  * @version 1.0.0
  */
 public class KeyBindings {
-    Calculator calculator;
+	
+    View view;
     JComponent component;
     InputHandler inputHandler;
     
@@ -41,12 +46,12 @@ public class KeyBindings {
      * a component used for key bindings. Also requires an InputHandler object
      * to pass input into.
      * 
-     * @param calculator A Calculator object.
+     * @param view A Calculator object.
      * @param inputHandler An InputHandler object.
      */
-    public KeyBindings(Calculator calculator, InputHandler inputHandler) {
-        this.calculator = calculator;
-        component = calculator.getMainPanel();
+    public KeyBindings(View view, InputHandler inputHandler) {
+        this.view = view;
+        component = view.getMainPanel();
         this.inputHandler = inputHandler;
         prepKeyBindings();
     }
@@ -150,4 +155,5 @@ public class KeyBindings {
             inputHandler.processInput(keyPressed);
         }
     }
+    
 }

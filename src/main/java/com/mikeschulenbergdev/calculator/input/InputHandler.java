@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Mike Schulenberg
+ * Copyright (C) 2018-2019 Mike Schulenberg
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,12 +15,17 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package calculator;
+package com.mikeschulenbergdev.calculator.input;
+
+import static com.mikeschulenbergdev.calculator.view.View.BACKSPACE_SYMBOL;
 
 import java.util.ArrayList;
+
 import javax.swing.JLabel;
 
-import static calculator.Calculator.BACKSPACE_SYMBOL;
+import com.mikeschulenbergdev.calculator.core.Evaluator;
+import com.mikeschulenbergdev.calculator.core.ValidOperators;
+import com.mikeschulenbergdev.calculator.view.gui.Button;
 
 /**
  * This class manages the user input for the program.
@@ -29,6 +34,7 @@ import static calculator.Calculator.BACKSPACE_SYMBOL;
  * @version 1.0.0
  */
 public class InputHandler {
+	
     private final StringBuilder SB;
     private final Evaluator EVALUATOR;
     private final ArrayList<Button> NUMBER_PAD;
@@ -319,4 +325,5 @@ public class InputHandler {
         SB.setLength(0);       
         DISPLAY.setText(newText.toUpperCase());
     }
+    
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Mike Schulenberg
+ * Copyright (C) 2018-2019 Mike Schulenberg
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package calculator;
+package com.mikeschulenbergdev.calculator.core;
 
 import java.math.BigDecimal;
 import java.util.Stack;
@@ -27,6 +27,7 @@ import java.util.Stack;
  * @version 1.0.0
  */
 public class Evaluator{
+	
     private final Stack<BigDecimal> VALUES = new Stack<>();
     private final Stack<Character> OPERATORS = new Stack<>();
     
@@ -218,4 +219,5 @@ public class Evaluator{
             return true;
         } 
     }
+    
 }

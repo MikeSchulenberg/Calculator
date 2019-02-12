@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Mike Schulenberg
+ * Copyright (C) 2018-2019 Mike Schulenberg
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package calculator;
+package com.mikeschulenbergdev.calculator.view;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -26,10 +26,18 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import org.springframework.stereotype.Component;
+
+import com.mikeschulenbergdev.calculator.core.ValidOperators;
+import com.mikeschulenbergdev.calculator.input.InputHandler;
+import com.mikeschulenbergdev.calculator.input.KeyBindings;
+import com.mikeschulenbergdev.calculator.view.gui.Button;
 
 /**
  *  This program is an arithmetic calculator that evaluates expressions 
@@ -40,7 +48,10 @@ import javax.swing.JPanel;
  * @author Mike Schulenberg
  * @version 1.0.0
  */
-public class Calculator extends JFrame {
+
+@Component
+public class View extends JFrame {
+	
     private final InputHandler INPUT_HANDLER;
     private final ArrayList<Button> NUMBER_PAD;
     
@@ -49,15 +60,11 @@ public class Calculator extends JFrame {
 
     public static final String BACKSPACE_SYMBOL = "\u2190"; // char: ←
     
-    public Calculator() {       
+    public View() {       
         NUMBER_PAD = new ArrayList<>();        
         prepUI();  
         INPUT_HANDLER = new InputHandler(display, NUMBER_PAD);
         new KeyBindings(this, INPUT_HANDLER);
-    }
-    
-    public static void main(String[] args) {
-        new Calculator();      
     }
     
     /**
@@ -324,4 +331,5 @@ public class Calculator extends JFrame {
             INPUT_HANDLER.processInput(e.getActionCommand());            
         }
     }
+    
 }

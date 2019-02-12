@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Mike Schulenberg
+ * Copyright (C) 2018-2019 Mike Schulenberg
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package calculator;
+package com.mikeschulenbergdev.calculator.core;
 
 import java.util.HashSet;
 
@@ -26,6 +26,7 @@ import java.util.HashSet;
  * @version 1.0.0
  */
 public class ValidOperators {
+	
     public static final String DIVISION = "\u00F7";
     public static final String MULTIPLICATION = "\u00D7";
     public static final String ADDITION = "+";
@@ -50,4 +51,5 @@ public class ValidOperators {
     public static boolean isOperator(String key) {
         return VALID_OPERATORS.contains(key);
     }
+    
 }
