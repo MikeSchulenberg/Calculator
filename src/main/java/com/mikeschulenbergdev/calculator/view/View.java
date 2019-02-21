@@ -32,6 +32,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import com.mikeschulenbergdev.calculator.core.ValidOperators;
@@ -52,18 +54,19 @@ import com.mikeschulenbergdev.calculator.view.gui.Button;
 @Component
 public class View extends JFrame {
 	
-    private final InputHandler INPUT_HANDLER;
-    private final ArrayList<Button> NUMBER_PAD;
+    private final InputHandler INPUT_HANDLER;    
     
     private JPanel mainPanel;
     private JLabel display;
-
+    private final ArrayList<Button> NUMBER_PAD;
+    
     public static final String BACKSPACE_SYMBOL = "\u2190"; // char: ←
     
-    public View() {       
+    @Autowired
+    public View(@Lazy InputHandler inputHandler) {       
         NUMBER_PAD = new ArrayList<>();        
         prepUI();  
-        INPUT_HANDLER = new InputHandler(display, NUMBER_PAD);
+        INPUT_HANDLER = inputHandler;
         new KeyBindings(this, INPUT_HANDLER);
     }
     
@@ -320,6 +323,25 @@ public class View extends JFrame {
      */
     public JPanel getMainPanel() {
         return mainPanel;
+    }
+    
+    /**
+     * Gets the main component for displaying text to the user.
+     * 
+     * @return The main display component.
+     */
+    public JLabel getDisplay() {
+        return display;
+    }
+    
+    /**
+     * Gets the collection of buttons that allows the user to input
+     * an arithmetic expression.
+     * 
+     * @return The calculator's number pad.
+     */
+    public ArrayList<Button> getNumberPad() {
+        return NUMBER_PAD;
     }
     
     /**

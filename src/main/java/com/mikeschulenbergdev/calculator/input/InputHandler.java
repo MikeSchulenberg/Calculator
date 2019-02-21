@@ -23,8 +23,13 @@ import java.util.ArrayList;
 
 import javax.swing.JLabel;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Component;
+
 import com.mikeschulenbergdev.calculator.core.Evaluator;
 import com.mikeschulenbergdev.calculator.core.ValidOperators;
+import com.mikeschulenbergdev.calculator.view.View;
 import com.mikeschulenbergdev.calculator.view.gui.Button;
 
 /**
@@ -33,13 +38,15 @@ import com.mikeschulenbergdev.calculator.view.gui.Button;
  * @author Mike Schulenberg
  * @version 1.0.0
  */
+
+@Component
 public class InputHandler {
 	
     private final StringBuilder SB;
-    private final Evaluator EVALUATOR;
-    private final ArrayList<Button> NUMBER_PAD;
+    private final Evaluator EVALUATOR; 
     
     private final JLabel DISPLAY;
+    private final ArrayList<Button> NUMBER_PAD;
     
     /* When checking the preferred width of the display showing the current 
     expression against its actual width, sometimes we need to know if it's
@@ -49,11 +56,12 @@ public class InputHandler {
         GREATER_THAN_OR_EQUAL_TO, GREATER_THAN
     }
     
-    public InputHandler(JLabel display, ArrayList<Button> numberPad) {
+    @Autowired
+    public InputHandler(View view) {
         SB = new StringBuilder();
         EVALUATOR = new Evaluator();
-        DISPLAY = display;
-        NUMBER_PAD = numberPad;
+        DISPLAY = view.getDisplay();
+        NUMBER_PAD = view.getNumberPad();
     }
     
     /**

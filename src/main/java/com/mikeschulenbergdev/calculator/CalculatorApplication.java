@@ -1,6 +1,5 @@
 package com.mikeschulenbergdev.calculator;
 
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -16,7 +15,8 @@ public class CalculatorApplication {
 					.headless(false)
 					.run(args);
 	
-		View view = context.getBean(View.class);	
+		// TODO: delete and clean up imports
+//		View view = context.getBean(View.class);	
 	}
 
 }
