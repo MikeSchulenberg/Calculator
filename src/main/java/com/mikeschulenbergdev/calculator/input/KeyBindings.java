@@ -26,6 +26,9 @@ import javax.swing.AbstractAction;
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import com.mikeschulenbergdev.calculator.core.ValidOperators;
 import com.mikeschulenbergdev.calculator.view.View;
 
@@ -35,12 +38,14 @@ import com.mikeschulenbergdev.calculator.view.View;
  * @author Mike Schulenberg
  * @version 1.0.0
  */
+
+@Component
 public class KeyBindings {
 	
-    View view;
-    JComponent component;
-    InputHandler inputHandler;
+    private final JComponent MAIN_PANEL;
+    private final InputHandler INPUT_HANDLER;
     
+    // TODO: make sure all constructors either have or don't have comments
     /**
      * Constructor requiring a Calculator object to receive commands and provide
      * a component used for key bindings. Also requires an InputHandler object
@@ -49,10 +54,16 @@ public class KeyBindings {
      * @param view A Calculator object.
      * @param inputHandler An InputHandler object.
      */
+    
+    @Autowired
     public KeyBindings(View view, InputHandler inputHandler) {
-        this.view = view;
-        component = view.getMainPanel();
-        this.inputHandler = inputHandler;
+        // TODO: delete old code
+    	
+//    	this.view = view;
+    	
+    	INPUT_HANDLER = inputHandler;
+        MAIN_PANEL = view.getMainPanel();
+        
         prepKeyBindings();
     }
     
@@ -71,9 +82,9 @@ public class KeyBindings {
     private void prepNumberKeys() {
         int numDigits = 10;
         for (int i = 0; i < numDigits; i++) {
-            component.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT)
+            MAIN_PANEL.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT)
                     .put(KeyStroke.getKeyStroke((char) ('0' + i)), "key" + i);
-            component.getActionMap()
+            MAIN_PANEL.getActionMap()
                     .put("key" + i, new KeyAction(String.valueOf(i)));
         }  
     }
@@ -82,24 +93,24 @@ public class KeyBindings {
      * Preps the operator keys.
      */
     private void prepOperatorKeys() {
-        component.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT)
+        MAIN_PANEL.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT)
                     .put(KeyStroke.getKeyStroke('/'), "division");
-        component.getActionMap()
+        MAIN_PANEL.getActionMap()
                     .put("division", new KeyAction(ValidOperators.DIVISION));
         
-        component.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT)
+        MAIN_PANEL.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT)
                     .put(KeyStroke.getKeyStroke('*'), "multiplication");
-        component.getActionMap()
+        MAIN_PANEL.getActionMap()
                     .put("multiplication", new KeyAction(ValidOperators.MULTIPLICATION));
         
-        component.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT)
+        MAIN_PANEL.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT)
                     .put(KeyStroke.getKeyStroke('+'), "addition");
-        component.getActionMap()
+        MAIN_PANEL.getActionMap()
                     .put("addition", new KeyAction(ValidOperators.ADDITION));
         
-        component.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT)
+        MAIN_PANEL.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT)
                     .put(KeyStroke.getKeyStroke('-'), "subtraction");
-        component.getActionMap()
+        MAIN_PANEL.getActionMap()
                     .put("subtraction", new KeyAction(ValidOperators.SUBTRACTION));
     }
     
@@ -107,36 +118,36 @@ public class KeyBindings {
      * Preps the remaining keys.
      */
     private void prepSupplementalKeys() {
-        component.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT)
+        MAIN_PANEL.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT)
                     .put(KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0), "clear");
-        component.getActionMap()
+        MAIN_PANEL.getActionMap()
                     .put("clear", new KeyAction("C"));
         
-        component.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT)
+        MAIN_PANEL.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT)
                     .put(KeyStroke.getKeyStroke('('), "rightParen");
-        component.getActionMap()
+        MAIN_PANEL.getActionMap()
                     .put("rightParen", new KeyAction("("));
         
-        component.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT)
+        MAIN_PANEL.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT)
                     .put(KeyStroke.getKeyStroke(')'), "leftParen");
-        component.getActionMap()
+        MAIN_PANEL.getActionMap()
                     .put("leftParen", new KeyAction(")"));
         
-        component.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT)
+        MAIN_PANEL.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT)
                     .put(KeyStroke.getKeyStroke('.'), "decimal");
-        component.getActionMap()
+        MAIN_PANEL.getActionMap()
                     .put("decimal", new KeyAction("."));
         
-        component.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT)
+        MAIN_PANEL.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT)
                     .put(KeyStroke.getKeyStroke(KeyEvent.VK_BACK_SPACE, 0), "backSpace");
-        component.getActionMap()
+        MAIN_PANEL.getActionMap()
                     .put("backSpace", new KeyAction(BACKSPACE_SYMBOL));
         
-        component.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT)
+        MAIN_PANEL.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT)
                     .put(KeyStroke.getKeyStroke('='), "equals");
-        component.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT)
+        MAIN_PANEL.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT)
                     .put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "equals");
-        component.getActionMap()
+        MAIN_PANEL.getActionMap()
                     .put("equals", new KeyAction("="));
     }
     
@@ -152,7 +163,7 @@ public class KeyBindings {
         
         @Override
         public void actionPerformed(ActionEvent e) {
-            inputHandler.processInput(keyPressed);
+            INPUT_HANDLER.processInput(keyPressed);
         }
     }
     

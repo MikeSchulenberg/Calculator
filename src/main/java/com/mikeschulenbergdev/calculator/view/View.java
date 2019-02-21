@@ -67,7 +67,9 @@ public class View extends JFrame {
         NUMBER_PAD = new ArrayList<>();        
         prepUI();  
         INPUT_HANDLER = inputHandler;
-        new KeyBindings(this, INPUT_HANDLER);
+        
+        // TODO: delete old code
+//        new KeyBindings(this, INPUT_HANDLER);
     }
     
     /**
