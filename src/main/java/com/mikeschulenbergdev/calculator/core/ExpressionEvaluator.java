@@ -20,13 +20,17 @@ package com.mikeschulenbergdev.calculator.core;
 import java.math.BigDecimal;
 import java.util.Stack;
 
+import org.springframework.stereotype.Component;
+
 /**
  * This class evaluates arithmetic expressions.
  * 
  * @author Mike Schulenberg
  * @version 1.0.0
  */
-public class Evaluator{
+
+@Component
+public class ExpressionEvaluator{
 	
     private final Stack<BigDecimal> VALUES = new Stack<>();
     private final Stack<Character> OPERATORS = new Stack<>();

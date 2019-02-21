@@ -27,7 +27,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
-import com.mikeschulenbergdev.calculator.core.Evaluator;
+import com.mikeschulenbergdev.calculator.core.ExpressionEvaluator;
 import com.mikeschulenbergdev.calculator.core.ValidOperators;
 import com.mikeschulenbergdev.calculator.view.View;
 import com.mikeschulenbergdev.calculator.view.gui.Button;
@@ -43,7 +43,7 @@ import com.mikeschulenbergdev.calculator.view.gui.Button;
 public class InputHandler {
 	
     private final StringBuilder SB;
-    private final Evaluator EVALUATOR; 
+    private final ExpressionEvaluator EVALUATOR; 
     
     private final JLabel DISPLAY;
     private final ArrayList<Button> NUMBER_PAD;
@@ -57,9 +57,9 @@ public class InputHandler {
     }
     
     @Autowired
-    public InputHandler(View view) {
+    public InputHandler(ExpressionEvaluator evaluator, View view) {
         SB = new StringBuilder();
-        EVALUATOR = new Evaluator();
+        EVALUATOR = evaluator;
         DISPLAY = view.getDisplay();
         NUMBER_PAD = view.getNumberPad();
     }
