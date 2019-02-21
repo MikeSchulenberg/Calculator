@@ -1,3 +1,7 @@
+// TODO: add license text - this file
+
+// TODO: update version information - all files
+
 package com.mikeschulenbergdev.calculator;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
