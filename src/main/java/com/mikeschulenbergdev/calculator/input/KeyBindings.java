@@ -36,7 +36,7 @@ import com.mikeschulenbergdev.calculator.view.View;
  * This class sets up all key bindings used by the program.
  * 
  * @author Mike Schulenberg
- * @version 1.0.0
+ * @version 1.0.1
  */
 
 @Component
@@ -45,22 +45,8 @@ public class KeyBindings {
     private final JComponent MAIN_PANEL;
     private final InputHandler INPUT_HANDLER;
     
-    // TODO: make sure all constructors either have or don't have comments
-    /**
-     * Constructor requiring a Calculator object to receive commands and provide
-     * a component used for key bindings. Also requires an InputHandler object
-     * to pass input into.
-     * 
-     * @param view A Calculator object.
-     * @param inputHandler An InputHandler object.
-     */
-    
     @Autowired
     public KeyBindings(View view, InputHandler inputHandler) {
-        // TODO: delete old code
-    	
-//    	this.view = view;
-    	
     	INPUT_HANDLER = inputHandler;
         MAIN_PANEL = view.getMainPanel();
         

@@ -48,7 +48,7 @@ import com.mikeschulenbergdev.calculator.view.gui.Button;
  * This class builds the GUI.
  * 
  * @author Mike Schulenberg
- * @version 1.0.0
+ * @version 1.0.1
  */
 
 @Component
@@ -67,9 +67,6 @@ public class View extends JFrame {
         NUMBER_PAD = new ArrayList<>();        
         prepUI();  
         INPUT_HANDLER = inputHandler;
-        
-        // TODO: delete old code
-//        new KeyBindings(this, INPUT_HANDLER);
     }
     
     /**

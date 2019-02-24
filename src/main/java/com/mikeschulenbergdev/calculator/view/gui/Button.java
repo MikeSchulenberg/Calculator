@@ -25,7 +25,7 @@ import javax.swing.JButton;
  * This class adds additional JButton behavior.
  * 
  * @author Mike Schulenberg
- * @version 1.0.0
+ * @version 1.0.1
  */
 public class Button extends JButton{
 

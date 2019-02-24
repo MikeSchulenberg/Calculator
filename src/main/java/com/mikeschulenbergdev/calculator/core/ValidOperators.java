@@ -23,7 +23,7 @@ import java.util.HashSet;
  * This class represents the arithmetic operators used by the program.
  * 
  * @author Mike Schulenberg
- * @version 1.0.0
+ * @version 1.0.1
  */
 public class ValidOperators {
 	

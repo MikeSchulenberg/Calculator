@@ -36,7 +36,7 @@ import com.mikeschulenbergdev.calculator.view.gui.Button;
  * This class manages the user input for the program.
  * 
  * @author Mike Schulenberg
- * @version 1.0.0
+ * @version 1.0.1
  */
 
 @Component

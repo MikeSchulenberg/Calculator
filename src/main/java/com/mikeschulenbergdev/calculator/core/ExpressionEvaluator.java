@@ -26,7 +26,7 @@ import org.springframework.stereotype.Component;
  * This class evaluates arithmetic expressions.
  * 
  * @author Mike Schulenberg
- * @version 1.0.0
+ * @version 1.0.1
  */
 
 @Component
