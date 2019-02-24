@@ -21,8 +21,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
 
-import com.mikeschulenbergdev.calculator.view.View;
-
 /**
  * This class configures the application context.
  * 

@@ -34,6 +34,11 @@ public class ValidOperators {
     
     private static final HashSet<String> VALID_OPERATORS;
     
+    // Prevent this class from being instantiated
+    private ValidOperators() {
+    	
+    }
+    
     static {
         VALID_OPERATORS = new HashSet<>();
         VALID_OPERATORS.add(DIVISION);
