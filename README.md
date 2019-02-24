@@ -5,7 +5,7 @@ This program is an arithmetic calculator that evaluates expressions according to
 Mike Schulenberg
 
 ## Version
-1.0.0
+1.0.1
 
 ## Development
 This program was written in Java and uses Swing.
